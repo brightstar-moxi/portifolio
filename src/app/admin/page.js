@@ -17,13 +17,13 @@ export default function AdminView() {
 
     const [currentSelectedTab, setCurrentSelectedTab] = useState('home')
 
-    const [homeViewFormData, setHomeViewFormData] = useState()
+    const [homeViewFormData, setHomeViewFormData] = useState(initialHomeFormData)
 
     const menuItems = [
         {
             id: 'home',
             label: 'Home',
-            component: <AdminHomeView/>
+            component: <AdminHomeView formData={homeViewFormData} setFormData={setHomeViewFormData}/>
         },
         {
             id: 'about',
