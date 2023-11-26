@@ -34,7 +34,7 @@ const controls = [
         label: "Skills",
       },
     ];
-export default function AdminAboutView({ formData, setFormData }){
+export default function AdminAboutView({ formData, setFormData, handleSaveData }){
     console.log(formData);
     return (
         <div className="md:w-2/5 mx-auto">
@@ -44,7 +44,7 @@ export default function AdminAboutView({ formData, setFormData }){
                     formData={formData}
                     setFormData={setFormData}
                 />
-                <button className=" mt-[10px] border border-green-600 p-4 font-bold  text-{16px}">Add Info</button>
+                <button onClick={()=> handleSaveData('about')} className=" mt-[10px] border border-green-600 p-4 font-bold  text-{16px}">Add Info</button>
             </div>
         </div>
     )

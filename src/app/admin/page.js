@@ -53,27 +53,27 @@ export default function AdminView() {
         {
             id: 'home',
             label: 'Home',
-            component: <AdminHomeView formData={homeViewFormData} setFormData={setHomeViewFormData} />
+            component: <AdminHomeView formData={homeViewFormData} setFormData={setHomeViewFormData} handleSaveData={handleSaveData}/>
         },
         {
             id: 'about',
             label: 'About',
-            component: <AdminAboutView formData={aboutViewFormData} setFormData={setAboutViewFormData} />
+            component: <AdminAboutView formData={aboutViewFormData} setFormData={setAboutViewFormData} handleSaveData={handleSaveData}/>
         },
         {
             id: 'experience',
             label: 'Experience',
-            component: <AdminExperienceView formData={experienceViewFormData} setFormData={setExperienceViewFormData} />
+            component: <AdminExperienceView formData={experienceViewFormData} setFormData={setExperienceViewFormData} handleSaveData={handleSaveData}/>
         },
         {
             id: 'education',
             label: 'Education',
-            component: <AdminEducationView formData={educationViewFormData} setFormData={setEducationViewFormData} />
+            component: <AdminEducationView formData={educationViewFormData} setFormData={setEducationViewFormData} handleSaveData={handleSaveData}/>
         },
         {
             id: 'project',
             label: 'Project',
-            component: <AdminProjectView formData={projectViewFormData} setFormData={setProjectViewFormData} />
+            component: <AdminProjectView formData={projectViewFormData} setFormData={setProjectViewFormData} handleSaveData={handleSaveData}/>
         },
         {
             id: 'contact',
@@ -81,6 +81,20 @@ export default function AdminView() {
             component: <AdminContactView />
         },
     ]
+
+    async function handleSaveData(){
+
+        const dataMap = {
+            home : homeViewFormData,
+            about : aboutViewFormData,
+            experience : experienceViewFormData,
+            project : projectViewFormData,
+            education : educationViewFormData
+        }
+
+        const response = await addData(currentSelectedTab, dataMap[currentSelectedTab])
+        console.log(response);
+    }
     return (
         <div className="border-b border-gray-200 ">
             <nav className="-mb-0.5 flex justify-center space-x-6 mt-8"

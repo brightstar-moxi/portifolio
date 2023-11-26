@@ -39,7 +39,7 @@ export default function AdminProjectView({ formData, setFormData }){
                 formData={formData}
                 setFormData={setFormData}
             />
-            <button className=" mt-[10px] border border-green-600 p-4 font-bold  text-{16px}">Add Info</button>
+            <button onClick={()=> handleSaveData("project")} className=" mt-[10px] border border-green-600 p-4 font-bold  text-{16px}">Add Info</button>
         </div>
     </div>
     )

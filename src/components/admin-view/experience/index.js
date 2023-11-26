@@ -34,7 +34,7 @@ const controls = [
         label: "Job Profile",
       },
     ]
-export default function AdminExperienceView({ formData, setFormData }){
+export default function AdminExperienceView({ formData, setFormData, handleSaveData }){
     console.log(formData);
     return (
         <div className="md:w-3/5 mx-auto">
@@ -44,7 +44,7 @@ export default function AdminExperienceView({ formData, setFormData }){
                     formData={formData}
                     setFormData={setFormData}
                 />
-                <button className=" mt-[10px] border border-green-600 p-4 font-bold  text-{16px}">Add Info</button>
+                <button onClick={()=> handleSaveData("experience")} className=" mt-[10px] border border-green-600 p-4 font-bold  text-{16px}">Add Info</button>
             </div>
         </div>
     )
