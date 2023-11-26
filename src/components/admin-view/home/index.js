@@ -1,6 +1,6 @@
 'use client'
 
-import FormControl from "../form-controls"
+import FormControls from "../form-controls"
 
 const controls = [
     {
@@ -18,10 +18,11 @@ const controls = [
 ]
 
 export default function AdminHomeView({ formData, setFormData }) {
+    console.log(formData);
     return (
-        <div className="w-full">
+        <div className="md:w-3/5 mx-auto">
             <div className="bg-[#ffffff] shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <FormControl
+                <FormControls
                     controls={controls}
                     formData={formData}
                     setFormData={setFormData}
