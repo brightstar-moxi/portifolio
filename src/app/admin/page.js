@@ -6,6 +6,7 @@ import AdminEducationView from "@/components/admin-view/education"
 import AdminExperienceView from "@/components/admin-view/experience"
 import AdminHomeView from "@/components/admin-view/home"
 import AdminProjectView from "@/components/admin-view/project"
+import { addData } from "@/services"
 import { useState } from "react"
 
 const initialHomeFormData = {

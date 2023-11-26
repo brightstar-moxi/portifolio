@@ -18,7 +18,7 @@ export async function addData(currentTab, formData){
 
 // to retrieve Data
 
-export async function addData(currentTab){
+export async function getData(currentTab){
     try {
         const response = await fetch(`/api/${currentTab}/get`,{
             method: "GET",
