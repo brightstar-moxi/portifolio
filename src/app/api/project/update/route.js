@@ -1,5 +1,6 @@
 import connectToDB from "@/database";
 import About from "@/models/About";
+import Project from "@/models/Project";
 import { NextResponse } from "next/server";
 
 
@@ -10,21 +11,19 @@ export async function PUT(req) {
     try {
         await connectToDB()
         const extractData = await req.json()
-        const { aboutme,
-            noofprojects,
-            yearofexperience,
-            noofclients,
-            skills, } = extractData;
+        const {   name,
+            technologies,
+            website,
+            github, } = extractData;
 
-        const updateData = await About.findOneAndUpdate({
+        const updateData = await Project.findOneAndUpdate({
             _id: _id
 
         }, {
-            aboutme,
-            noofprojects,
-            yearofexperience,
-            noofclients,
-            skills,
+            name,
+            technologies,
+            website,
+            github,
         }, { new: true });
 
         if(updateData){

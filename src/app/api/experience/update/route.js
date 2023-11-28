@@ -1,5 +1,5 @@
 import connectToDB from "@/database";
-import About from "@/models/About";
+import Experience from "@/models/Experience";
 import { NextResponse } from "next/server";
 
 
@@ -10,13 +10,13 @@ export async function PUT(req) {
     try {
         await connectToDB()
         const extractData = await req.json()
-        const { aboutme,
-            noofprojects,
-            yearofexperience,
-            noofclients,
-            skills, } = extractData;
+        const { position,
+            company,
+            duration,
+            location,
+            jobprofile, } = extractData;
 
-        const updateData = await About.findOneAndUpdate({
+        const updateData = await Experience.findOneAndUpdate({
             _id: _id
 
         }, {
@@ -24,7 +24,11 @@ export async function PUT(req) {
             noofprojects,
             yearofexperience,
             noofclients,
-            skills,
+            skills,position,
+            company,
+            duration,
+            location,
+            jobprofile,
         }, { new: true });
 
         if(updateData){
