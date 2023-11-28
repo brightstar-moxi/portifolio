@@ -30,7 +30,7 @@ const controls = [
   ];
   
 
-export default function AdminProjectView({ formData, setFormData }){
+export default function AdminProjectView({ formData, setFormData, handleSaveData }){
     return (
         <div className="md:w-3/5 mx-auto">
         <div className="bg-[#ffffff] shadow-md rounded px-8 pt-6 pb-8 mb-4">
