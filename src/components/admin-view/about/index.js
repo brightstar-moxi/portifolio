@@ -34,11 +34,25 @@ const controls = [
         label: "Skills",
       },
     ];
-export default function AdminAboutView({ formData, setFormData, handleSaveData }){
+export default function AdminAboutView({ formData, setFormData, handleSaveData,data }){
     console.log(formData);
     return (
         <div className="md:w-2/5 mx-auto">
             <div className="bg-[#ffffff] shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <div className="mb-10">
+                {
+                  data && data.length ?
+                  data.map((item)=> <div className="flex flex-col gap-4 border p-4 border-green-600">
+                    <p>{item.aboutme}</p>
+                    <p>{item.noofprojects}</p>
+                    <p>{item.yearofexperience}</p>
+                    <p>{item.noofclients}</p>
+                    <p>{item.skills}</p>
+                  
+                  </div>)
+                  :null
+                }
+              </div>
                 <FormControls
                     controls={controls}
                     formData={formData}

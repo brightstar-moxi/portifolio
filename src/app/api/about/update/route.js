@@ -14,7 +14,7 @@ export async function PUT(req) {
             noofprojects,
             yearofexperience,
             noofclients,
-            skills, } = extractData;
+            skills, _id} = extractData;
 
         const updateData = await About.findOneAndUpdate({
             _id: _id

@@ -10,7 +10,7 @@ export async function PUT(req) {
     try {
         await connectToDB()
         const extractData = await req.json()
-        const { position,
+        const { _id, position,
             company,
             duration,
             location,

@@ -13,7 +13,7 @@ export async function PUT(req) {
         const extractData = await req.json()
         const { degree,
             year,
-            college, } = extractData;
+            college, _id} = extractData;
 
         const updateData = await Education.findOneAndUpdate({
             _id: _id

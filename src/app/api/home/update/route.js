@@ -11,7 +11,7 @@ export async function PUT(req) {
     try {
         await connectToDB()
         const extractData = await req.json()
-        const { heading,
+        const { _id, heading,
             summary, } = extractData;
 
         const updateData = await Home.findOneAndUpdate({

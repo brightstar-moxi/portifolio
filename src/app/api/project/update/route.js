@@ -1,5 +1,4 @@
 import connectToDB from "@/database";
-import About from "@/models/About";
 import Project from "@/models/Project";
 import { NextResponse } from "next/server";
 
@@ -11,7 +10,7 @@ export async function PUT(req) {
     try {
         await connectToDB()
         const extractData = await req.json()
-        const {   name,
+        const { _id, name,
             technologies,
             website,
             github, } = extractData;
@@ -26,22 +25,22 @@ export async function PUT(req) {
             github,
         }, { new: true });
 
-        if(updateData){
+        if (updateData) {
             return NextResponse.json({
-                success:true,
-                message : 'updated successfully'
+                success: true,
+                message: 'updated successfully'
             })
-        }else{
+        } else {
             return NextResponse.json({
-                success:false,
-                message : 'Something went wrong !'
-            }) 
+                success: false,
+                message: 'Something went wrong !'
+            })
         }
     } catch (error) {
         console.log(error);
         return NextResponse.json({
-            success:false,
-            message : 'Something went wrong ! pls try again later'
-        }) 
+            success: false,
+            message: 'Something went wrong ! pls try again later'
+        })
     }
 }
