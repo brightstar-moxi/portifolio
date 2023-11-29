@@ -7,7 +7,7 @@ import AdminExperienceView from "@/components/admin-view/experience"
 import AdminHomeView from "@/components/admin-view/home"
 import Login from "@/components/admin-view/login"
 import AdminProjectView from "@/components/admin-view/project"
-import { addData, getData, updateData } from "@/services"
+import { addData, getData, login, updateData } from "@/services"
 import { useEffect, useState } from "react"
 
 const initialHomeFormData = {
@@ -142,8 +142,22 @@ export default function AdminView() {
         setEducationViewFormData(initialEducationFormData);
         setProjectViewFormData(initialProjectFormData);
     }
+useEffect(()=>{
+    setAuthUser(JSON.parse(sessionStorage,getItem("authUser")))
+},[])
 
-    if(!authUser) return <Login formData={loginFormData} setFormData={setLoginFormData} />
+    async function handleLogin(){
+       const res = await login(loginFormData) 
+
+       console.log(res, "login");
+
+       if(res?.sucess){
+        setAuthUser(true)
+        sessionStorage.setItem('authUser', JSON.stringify(true))
+       }
+    }
+
+    if(!authUser) return <Login formData={loginFormData} handleLogin={handleLogin} setFormData={setLoginFormData} />
     return (
         <div className="border-b border-gray-200 ">
             <nav className="-mb-0.5 flex justify-center space-x-6 mt-8"

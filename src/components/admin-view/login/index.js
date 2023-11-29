@@ -17,7 +17,7 @@ const controls = [
     },
 ]
 
-export default function Login({ formData, setFormData,handleSaveData }){
+export default function Login({ formData, setFormData,handleLogin }){
 
     return(
         <div className="md:w-3/5 mx-auto">
@@ -27,7 +27,7 @@ export default function Login({ formData, setFormData,handleSaveData }){
                 formData={formData}
                 setFormData={setFormData}
             />
-            <button onClick={()=> handleSaveData("home")} className=" mt-[10px] border border-green-600 p-4 font-bold  text-{16px}">Add Info</button>
+            <button onClick={handleLogin} className=" mt-[10px] border border-green-600 p-4 font-bold  text-{16px}">Login</button>
         </div>
     </div>
     )

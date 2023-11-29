@@ -1,4 +1,5 @@
 import connectToDB from "@/database";
+import User from "@/models/User";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -22,23 +23,16 @@ const checkPassword = await compare(password, hashPassword)
 if(!checkPassword){
     return NextResponse.json({
         success: false,
-        message :"wrong passsword"
+        message :"wrong passsword ! pls try again"
     })
 }
 
-        const saveData = await Home.create(extractData)
-
-        if(saveData){
+     
             return NextResponse.json({
                 success : true,
-                message : 'Data saved successfully'
+                message : 'Login successfully'
             })
-        }else{
-            return NextResponse.json({
-                success: false,
-                message :"Data error"
-            })
-        }
+     
     } catch (error) {
         console.log(error);
 
