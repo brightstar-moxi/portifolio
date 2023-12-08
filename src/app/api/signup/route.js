@@ -14,8 +14,8 @@ export async function POST(req) {
 
     if (!checkUser) {
       return NextResponse.json({
-        success: true,
-        message: "User name is  present !Please try again",
+        success: false,
+        message: "User name is not present !Please try again",
       });
     }
 
@@ -28,19 +28,9 @@ export async function POST(req) {
         message: "Wrong password. Please try again",
       });
     }
-    const finalData = {
-
-      user: {
-
-        username: checkUser.username,
-
-      },
-    };
-
     return NextResponse.json({
       success: true,
       message: "Login successfull",
-      finalData
     });
   } catch (e) {
     console.log(e);
