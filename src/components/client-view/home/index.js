@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import AnimationWapper from "../animation-wrapper";
 import { useMemo } from "react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaTwitter } from 'react-icons/fa'
+import Image from "next/image";
+import allImage from "../../../assets/2-removebg-preview.png"
 
 function variants() {
     return {
@@ -25,19 +27,27 @@ function variants() {
 const socialIcon = [
     {
         id: 'facebook',
-        icon: <FaFacebookF />
+        icon: <FaFacebookF
+            color="rgba(13, 183, 96, 1)"
+            className="w-[40px] h-[40px] "
+        />
     },
     {
         id: 'twitter',
-        icon: <FaTwitter />
+        icon: <FaTwitter
+            color="rgba(13, 183, 96, 1)"
+            className="w-[40px] h-[40px] " />
     },
     {
         id: 'linkedin',
-        icon: <FaLinkedinIn />
+        icon: <FaLinkedinIn
+            color="rgba(13, 183, 96, 1)"
+            className="w-[40px] h-[40px] " />
     },
     {
         id: 'instagram',
-        icon: <FaInstagram />
+        icon: <FaInstagram color="rgba(13, 183, 96, 1)"
+            className="w-[40px] h-[40px] " />
     },
 ]
 
@@ -71,7 +81,7 @@ export default function ClientHomeView({ data }) {
                         </p>
                         <motion.div className="flex gap-3 cursor-pointer">
                             {
-                                socialIcon.map((item) => {
+                                socialIcon.map((item) => (
                                     <motion.div
                                         key={item.id}
                                         initial={{ scale: 0 }}
@@ -89,7 +99,7 @@ export default function ClientHomeView({ data }) {
                                         {item.icon}
 
                                     </motion.div>
-                                })
+                                ))
                             }
 
                         </motion.div>
@@ -97,6 +107,21 @@ export default function ClientHomeView({ data }) {
 
 
                     </div>
+                    <motion.div className="flex w-full justify-end">
+                        <motion.div className="w-[400px] h-[400px] relative bg-green-main">
+                           
+                            <div  className="w-[400px] h-[400px] top-[40px] left-[-30px] rounded-lg border-[6px] border-[#000000] absolute"></div>
+                       <Image
+                         src={allImage}
+                         alt="Profile Picture"
+                         layout="responsive"
+                         quality={100}
+                         height={300}
+                         width={300}
+                         className="absolute top-[-15px]"
+                       />
+                        </motion.div>
+                    </motion.div>
                 </motion.div>
             </AnimationWapper>
         </div>
