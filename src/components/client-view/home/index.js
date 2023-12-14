@@ -49,7 +49,19 @@ export default function ClientHomeView({ data }) {
                             {
                                 data && data.length ? data[0]?.summary : null
                             }
-                            <motion.div className="flex gap-3">
+                            <motion.div 
+                            //  key={item.id}
+                             initial={{ scale: 0 }}
+                             animate={{ rotate: 360, scale: 1 }}
+                             transition={{
+                               type: "spring",
+                               damping: 20,
+                               stiffness: 80,
+                               duration: 4,
+                             }}
+                             whileHover={{ scale: 1.2, rotate: 360 }}
+                             whileTap={{ scale: 0.8, rotate: -360, borderRadius: "100%" }}
+                            className="flex gap-3">
                                 <FaFacebookF color="rgba(13, 183, 96, 1)" className="w-[40px] h-[40px] " />
                                 <FaTwitter color="rgba(13, 183, 96, 1)" className="w-[40px] h-[40px] " />
                                 <FaLinkedinIn color="rgba(13, 183, 96, 1)" className="w-[40px] h-[40px] " />
