@@ -22,6 +22,25 @@ function variants() {
     }
 }
 
+const socialIcon = [
+    {
+        id: 'facebook',
+        icon: <FaFacebookF />
+    },
+    {
+        id: 'twitter',
+        icon: <FaTwitter />
+    },
+    {
+        id: 'linkedin',
+        icon: <FaLinkedinIn />
+    },
+    {
+        id: 'instagram',
+        icon: <FaInstagram />
+    },
+]
+
 export default function ClientHomeView({ data }) {
 
     const setVariants = useMemo(() => variants(), [])
@@ -49,26 +68,34 @@ export default function ClientHomeView({ data }) {
                             {
                                 data && data.length ? data[0]?.summary : null
                             }
-                            <motion.div 
-                            //  key={item.id}
-                             initial={{ scale: 0 }}
-                             animate={{ rotate: 360, scale: 1 }}
-                             transition={{
-                               type: "spring",
-                               damping: 20,
-                               stiffness: 80,
-                               duration: 4,
-                             }}
-                             whileHover={{ scale: 1.2, rotate: 360 }}
-                             whileTap={{ scale: 0.8, rotate: -360, borderRadius: "100%" }}
-                            className="flex gap-3">
-                                <FaFacebookF color="rgba(13, 183, 96, 1)" className="w-[40px] h-[40px] " />
-                                <FaTwitter color="rgba(13, 183, 96, 1)" className="w-[40px] h-[40px] " />
-                                <FaLinkedinIn color="rgba(13, 183, 96, 1)" className="w-[40px] h-[40px] " />
-                                <FaInstagram color="rgba(13, 183, 96, 1)" className="w-[40px] h-[40px] " />
-
-                            </motion.div>
                         </p>
+                        <motion.div className="flex gap-3 cursor-pointer">
+                            {
+                                socialIcon.map((item) => {
+                                    <motion.div
+                                        key={item.id}
+                                        initial={{ scale: 0 }}
+                                        animate={{ rotate: 360, scale: 1 }}
+                                        transition={{
+                                            type: "spring",
+                                            damping: 20,
+                                            stiffness: 80,
+                                            duration: 4,
+                                        }}
+                                        whileHover={{ scale: 1.2, rotate: 360 }}
+                                        whileTap={{ scale: 0.8, rotate: -360, borderRadius: "100%" }}
+                                    >
+
+                                        {item.icon}
+
+                                    </motion.div>
+                                })
+                            }
+
+                        </motion.div>
+
+
+
                     </div>
                 </motion.div>
             </AnimationWapper>
