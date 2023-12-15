@@ -3,6 +3,8 @@
 import { useMemo } from "react";
 import AnimationWapper from "../animation-wrapper";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import aboutMeImage from "../../../assets/undraw_Developer_activity_re_39tg.png"
 
 function variants() {
     return {
@@ -18,6 +20,14 @@ function variants() {
                 duration
             }
         })
+    }
+}
+
+const skillItemVariant = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1
     }
 }
 
@@ -80,6 +90,38 @@ export default function ClientAboutView({ data }) {
                     <p className="text-[#000] mt-4 mb-8 font-bold">{data?.aboutme}</p>
                 </div>
             </AnimationWapper>
+            <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8">
+                <AnimationWapper className='flex w-flex'>
+                    <motion.div variants={setVariants} className="h-full w-full p-4">
+                        <Image
+                            src={aboutMeImage}
+                            alt="About Me"
+                            layout="responsive"
+                            height={414}
+                            width={508}
+                            quality={100}
+                        />
+                    </motion.div>
+                </AnimationWapper>
+                <AnimationWapper className={"flex items-center w-full p-4"}>
+                    <motion.div variants={setVariants}
+                        className="grid gap-4 grid-cols-3 h-full max-h-[200px] w-full"
+                    >
+                        {
+                            data?.skills.split(' ').map((skill) => (
+                                <motion.div
+                                    className="w-full flex justify-center items-center"
+                                    variants={skillItemVariant}
+                                >
+                                    <button className="whitespace-nowrap text-ellipsis overflow-hidden py-3 w-[160px] px-6 border-[2px] border-green-main bg-[#fff] text-[#000] font-semibold rounded-lg text-xl tracking-widest hover:shadow-green-main transition-all outline-none">
+                                        {skill}
+                                    </button>
+                                </motion.div>
+                            ))
+                        }
+                    </motion.div>
+                </AnimationWapper>
+            </div>
         </div>
     )
 }
