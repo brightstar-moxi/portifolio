@@ -26,7 +26,7 @@ export default async function Home() {
   return (
     <div>
       <ClientHomeView data= {homeSectionData} />
-      <ClientAboutView data={aboutSectionData}/>
+      <ClientAboutView data={aboutSectionData && aboutSectionData.length ? aboutSectionData[0] : []}/>
       <ClientexprienceView educationData={educationSectionData} experienceData={experienceSectionData}/>
       {/* <ClientEducationView/> */}
       <ClientProjectView data={projectSectionData} />

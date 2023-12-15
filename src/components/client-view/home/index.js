@@ -2,7 +2,7 @@
 import { motion } from "framer-motion"
 
 import AnimationWapper from "../animation-wrapper";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaTwitter } from 'react-icons/fa'
 import Image from "next/image";
 import allImage from "../../../assets/2-removebg-preview.png"
@@ -53,7 +53,8 @@ const socialIcon = [
 
 export default function ClientHomeView({ data }) {
 
-    const setVariants = useMemo(() => variants(), [])
+    const setVariants = useMemo(() => variants(), []);
+    const containerRef = useRef(null)
     return (
         <div className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto" id="home">
             <AnimationWapper >
@@ -107,8 +108,11 @@ export default function ClientHomeView({ data }) {
 
 
                     </div>
-                    <motion.div className="flex w-full justify-end">
-                        <motion.div className="w-[400px] h-[400px] relative bg-green-main">
+                    <motion.div ref={containerRef} className="flex w-full justify-end">
+                        <motion.div
+                        drag
+                        dragConstraints={containerRef}
+                        className="w-[400px] h-[400px] relative bg-green-main">
                            
                             <div  className="w-[400px] h-[400px] top-[40px] left-[-30px] rounded-lg border-[6px] border-[#000000] absolute"></div>
                        <Image
