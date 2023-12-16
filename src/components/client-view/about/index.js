@@ -59,9 +59,15 @@ export default function ClientAboutView({ data }) {
                 <AnimationWapper className="rounded-lg w-full grid-flow-row grid grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-green-main bg-ehite-500 z-10">
                     {
                         aboutDataInfo.map((infoItem, index) => (
-                            <motion.div className={`flex items-center justify-start ${index === 0 ? "sm:justify-start" : index === 1 ? 'sm:justify-center' : 'sm:justify-end'}
-                        py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0
-                        `}
+                            <motion.div className={`flex items-center justify-start
+                            ${
+                              index === 0
+                                ? "sm:justify-start"
+                                : index === 1
+                                ? "sm:justify-center"
+                                : "sm:justify-end"
+                            } py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0
+                            `}
                                 key={index}
                                 custom={{ duration: 2 + index }}
                                 variants={setVariants}
@@ -108,7 +114,7 @@ export default function ClientAboutView({ data }) {
                         className="grid gap-4 grid-cols-3 h-full max-h-[200px] w-full"
                     >
                         {
-                            data?.skills.split(' ').map((skill) => (
+                            data?.skills.split(',').map((skill) => (
                                 <motion.div
                                     className="w-full flex justify-center items-center"
                                     variants={skillItemVariant}
