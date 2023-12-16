@@ -76,8 +76,8 @@ export default function ClientexprienceView({experienceData, educationData}){
                         <div className="flex w-full">
                         <motion.div className="container">
                 <Timeline position="right">
-                  {experienceData && experienceData.length
-                    ? experienceData.map((experienceItem) => (
+                  {educationData && educationData.length
+                    ? educationData.map((educationItem) => (
                         <TimelineItem>
                           <TimelineSeparator>
                             <TimelineDot className="bg-green-main" />
@@ -86,18 +86,15 @@ export default function ClientexprienceView({experienceData, educationData}){
                           <TimelineContent>
                             <div className="border-[2px] p-4 rounded-[8px] border-green-main mt-[14px] ml-[16px]">
                               <p className="font-bold">
-                                {experienceItem.duration}
+                                {educationItem.year}
                               </p>
                               <h3 className="font-extrabold mt-2">
-                                {experienceItem.company},{" "}
-                                {experienceItem.location}
+                                {educationItem.college}
                               </h3>
                               <p className="font-extrabold mt-2">
-                                {experienceItem.position}
+                                {educationItem.degree}
                               </p>
-                              <p className="font-extralight mt-2">
-                                {experienceItem.jobprofile}
-                              </p>
+                             
                             </div>
                           </TimelineContent>
                         </TimelineItem>
