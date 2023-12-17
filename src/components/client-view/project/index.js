@@ -1,36 +1,20 @@
 "use client"
 
-import { useMemo, useRef } from "react";
+import {  useRef } from "react";
 import AnimationWapper from "../animation-wrapper";
 import { motion, useScroll } from "framer-motion";
-
-function variants() {
-    return {
-        offscreen: {
-            y: 150,
-            opacity: 0
-        },
-        onscreen: ({ duration = 2 } = {}) => ({
-            y: 0,
-            opacity: 1,
-            transition: {
-                type: 'spring',
-                duration
-            }
-        })
-    }
-}
+import { useRouter } from "next/navigation";
 
 export default function ClientProjectView({data}){
 console.log(data, "Client Project View");
 
 
 
-const setVariants = useMemo(() => variants(), []);
+
 const containerRef = useRef(null);
 const {scrollXProgress} = useScroll
 ({container: containerRef})
-
+const router = useRouter()
 
     return(
         <div className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto" id="project">
@@ -77,6 +61,7 @@ const {scrollXProgress} = useScroll
                                     <h3 className="text-3xl text-black-600 capitalize font-extrabold">{item.name}</h3>
                                     <p className="text-sm mt-2 text-black-500 capitalize font-bold">
                             {item.createdAt.split("T")[0]}
+                            </p>
                             <div className="grid gap-2 mt-5 grid-cols-2 h-full max-h-[200px] w-full">
                                 {
                                     item?.technologies.split(",").map((techItem)=>(
@@ -88,10 +73,18 @@ const {scrollXProgress} = useScroll
                                     ))
                                 }
                             </div>
-                          </p>
+                          
                                 </div>
                              </div>
                              </div>
+                               <div className="absolute w-full bottom-0 justify-center flex gap-2">
+                      <button onClick={()=>router.push(item.website)} className="p-2 text-white-500 font-semibold text-[14px] tracking-widest bg-green-main transition-all outline-none">
+                        Website
+                      </button>
+                      <button onClick={()=>router.push(item.github)} className="p-2 text-white-500 font-semibold text-[14px] tracking-widest bg-green-main transition-all outline-none">
+                        Github
+                      </button>
+                    </div>
                              </div>
                         </li>
                     )) : null
