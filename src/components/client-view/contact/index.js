@@ -39,6 +39,14 @@ export default function ClientContactView() {
     const [formData, setFormData] = useState(initialFormData);
     const [ShowSuccessMessage, setShowSuccessMessage] = useState(false)
 
+    async function handleSendMessage() {
+        const res = await addData('contact', formData)
+    }
+    const isVaildForm = () => {
+        return formData && formData.name !== '' && formData.email !== '' && formData.message !== '' ? true : false
+    }
+    console.log(isVaildForm());
+
     return (
         <div className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto" id="contact">
             <AnimationWapper className={'py-6'}>
@@ -99,7 +107,7 @@ export default function ClientContactView() {
                                         ))
                             }
                             <div className="p-2 w-full">
-                                <button className="disabled:opacity-50 py-3 lg:py-4 px-12 lg:px-16 text-white-500 font-semibold rounded-lg text-2xl tracking-widest bg-green-main outline-none">Send Message</button>
+                                <button onClick={handleSendMessage} className="disabled:opacity-50 py-3 lg:py-4 px-12 lg:px-16 text-white-500 font-semibold rounded-lg text-2xl tracking-widest bg-green-main outline-none">Send Message</button>
                             </div>
                         </div>
                     </div>
