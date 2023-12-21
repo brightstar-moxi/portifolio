@@ -28,25 +28,25 @@ const socialIcon = [
     {
         id: 'facebook',
         icon: <FaFacebookF
-            color="rgba(13, 183, 96, 1)"
+            color="rgb(236, 33, 6)"
             className="w-[40px] h-[40px] "
         />
     },
     {
         id: 'twitter',
         icon: <FaTwitter
-            color="rgba(13, 183, 96, 1)"
+            color="rgb(236, 33, 6)"
             className="w-[40px] h-[40px] " />
     },
     {
         id: 'linkedin',
         icon: <FaLinkedinIn
-            color="rgba(13, 183, 96, 1)"
+            color="rgb(236, 33, 6)"
             className="w-[40px] h-[40px] " />
     },
     {
         id: 'instagram',
-        icon: <FaInstagram color="rgba(13, 183, 96, 1)"
+        icon: <FaInstagram color="rgb(236, 33, 6)"
             className="w-[40px] h-[40px] " />
     },
 ]
@@ -68,14 +68,14 @@ export default function ClientHomeView({ data }) {
                             {
                                 data && data.length ? data[0]?.heading
                                     .split(" ").map((item, index) => (<span
-                                        className={`${index === 2 || index === 3 ? "text-green-main" : "text-[#000]"}`}
+                                        className={`${index === 2 || index === 3 ? "text-[#FF4500]" : "text-[#fff]"}`}
                                     >
                                         {item} {" "}
                                     </span>))
                                     : null
                             }
                         </h1>
-                        <p className="text[#000] mt-4 mb-8 font-bold">
+                        <p className="text[#ffffff] mt-4 mb-8 font-bold">
                             {
                                 data && data.length ? data[0]?.summary : null
                             }
@@ -112,9 +112,9 @@ export default function ClientHomeView({ data }) {
                         <motion.div
                         drag
                         dragConstraints={containerRef}
-                        className="w-[400px] h-[400px] relative bg-green-main">
+                        className="w-[400px] h-[400px] relative bg-[#FF4500]">
                            
-                            <div  className="w-[400px] h-[400px] top-[40px] left-[-30px] rounded-lg border-[6px] border-[#000000] absolute"></div>
+                            <div  className="w-[400px] h-[400px] top-[40px] left-[-30px] rounded-lg border-[6px] border-[#ffffff] absolute"></div>
                        <Image
                          src={allImage}
                          alt="Profile Picture"

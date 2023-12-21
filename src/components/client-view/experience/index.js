@@ -16,7 +16,7 @@ export default function ClientexprienceView({experienceData, educationData}){
                         <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
                         {
                             'My Experience'.split(' ').map((item, index) => (
-                                <span className={`${index === 1 || index === 3 ? 'text-green-main' : 'text-[#000]'}`}
+                                <span className={`${index === 1 || index === 3 ? 'text-[#FF4500]' : 'text-[#fff]'}`}
                                 >{item} {" "}</span>
                             ))
                         }
@@ -31,15 +31,15 @@ export default function ClientexprienceView({experienceData, educationData}){
                     ? experienceData.map((experienceItem) => (
                         <TimelineItem>
                           <TimelineSeparator>
-                            <TimelineDot className="bg-green-main" />
-                            <TimelineConnector className="bg-green-main" />
+                            <TimelineDot className="bg-[#FF4500]" />
+                            <TimelineConnector className="bg-[#FF4500]" />
                           </TimelineSeparator>
                           <TimelineContent>
-                            <div className="border-[2px] p-4 rounded-[8px] border-green-main mt-[14px] ml-[16px]">
-                              <p className="font-bold">
+                            <div className="border-[2px] p-4 rounded-[8px] border-[#FF4500] mt-[14px] ml-[16px]">
+                              <p className="font-bold ">
                                 {experienceItem.duration}
                               </p>
-                              <h3 className="font-extrabold mt-2">
+                              <h3 className="font-extrabold mt-2 text-[#fff]">
                                 {experienceItem.company},{" "}
                                 {experienceItem.location}
                               </h3>
@@ -65,7 +65,7 @@ export default function ClientexprienceView({experienceData, educationData}){
                         <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
                         {
                             'My Education'.split(' ').map((item, index) => (
-                                <span className={`${index === 1 || index === 3 ? 'text-green-main' : 'text-[#000]'}`}
+                                <span className={`${index === 1 || index === 3 ? 'text-[#FF4500]' : 'text-[#fff]'}`}
                                 >{item} {" "}</span>
                             ))
                         }
@@ -80,15 +80,15 @@ export default function ClientexprienceView({experienceData, educationData}){
                     ? educationData.map((educationItem) => (
                         <TimelineItem>
                           <TimelineSeparator>
-                            <TimelineDot className="bg-green-main" />
-                            <TimelineConnector className="bg-green-main" />
+                            <TimelineDot className="bg-[#FF4500]" />
+                            <TimelineConnector className="bg-[#FF4500]" />
                           </TimelineSeparator>
                           <TimelineContent>
-                            <div className="border-[2px] p-4 rounded-[8px] border-green-main mt-[14px] ml-[16px]">
+                            <div className="border-[2px] p-4 rounded-[8px] border-[#FF4500] mt-[14px] ml-[16px]">
                               <p className="font-bold">
                                 {educationItem.year}
                               </p>
-                              <h3 className="font-extrabold mt-2">
+                              <h3 className="font-extrabold mt-2 text-[#fff]">
                                 {educationItem.college}
                               </h3>
                               <p className="font-extrabold mt-2">

@@ -6,10 +6,10 @@ html {
   font-family: "Rubik", sans-serif;
 }
 body {
-  background: bg-white-500
+  background: #000
 }
 p {
-  color:  #000000
+  color:  #ffffff
 }
 .animation-hover:after {
   background: none repeat scroll 0 0 transparent;

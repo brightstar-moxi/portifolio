@@ -69,7 +69,7 @@ setTimeout(()=>{
                     <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
                         {
                             'Contact Me'.split(' ').map((item, index) => (
-                                <span className={`${index === 1 || index === 3 ? 'text-green-main' : 'text-[#000]'}`}
+                                <span className={`${index === 1 || index === 3 ? 'text-[#FF4500]' : 'text-[#fff]'}`}
                                 >{item} {" "}</span>
                             ))
                         }
@@ -85,7 +85,7 @@ setTimeout(()=>{
                                     controlItem.name === 'message' ? (
                                         <div className="p-2 w-full">
                                             <div className="relative">
-                                                <label className="text-sm text-[#000]">
+                                                <label className="text-sm text-[#fff]">
                                                     {controlItem.label}
                                                 </label>
                                                 <textarea
@@ -96,7 +96,7 @@ setTimeout(()=>{
                                                         ...formData,
                                                         [controlItem.name]: e.target.value
                                                     })}
-                                                    className="w-full border-green-main border-[2px] bg-[#ffffff] rounded  h-32 text-base outline-none text-[#000000] py-1 px-3 resize-none leading-6"
+                                                    className="w-full border-[#FF4500] border-[2px] bg-[#000000] rounded  h-32 text-base outline-none text-[#ffffff] py-1 px-3 resize-none leading-6"
                                                 ></textarea>
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@ setTimeout(()=>{
                                         : (
                                             <div className="p-2 w-full">
                                                 <div className="relative">
-                                                    <label className="text-sm text-[#000]">
+                                                    <label className="text-sm text-[#fff]">
                                                         {controlItem.label}
                                                     </label>
                                                     <input
@@ -115,20 +115,20 @@ setTimeout(()=>{
                                                             ...formData,
                                                             [controlItem.name]: e.target.value
                                                         })}
-                                                        className="w-full border-green-main border-[2px] bg-[#ffffff] rounded  text-base outline-none text-[#000000] py-1 px-3  leading-6"
+                                                        className="w-full border-[#FF4500] border-[2px] bg-[#000000] rounded  text-base outline-none text-[#ffffff] py-1 px-3  leading-6"
                                                     />
                                                 </div>
                                             </div>
                                         ))
                             }
                             {
-                                showSuccessMessage && <p className="text-[14px] font-bold my-[8px]">Your Message Is Succesfilly Delivered !</p>
+                                showSuccessMessage && <p className="text-[14px] font-bold my-[8px] text-[#ffffff]">Your Message Is Succesfilly Delivered !</p>
                             }
                             <div className="p-2 w-full">
                                
                                 <button
                                  disabled={!isVaildForm()}
-                                onClick={handleSendMessage} className="disabled:opacity-50 py-3 lg:py-4 px-12 lg:px-16 text-white-500 font-semibold rounded-lg text-2xl tracking-widest bg-green-main outline-none">Send Message</button>
+                                onClick={handleSendMessage} className="disabled:opacity-50 py-3 lg:py-4 px-12 lg:px-16 text-[#fff] font-semibold rounded-lg text-2xl tracking-widest bg-[#FF4500] outline-none">Send Message</button>
                             </div>
                         </div>
                     </div>

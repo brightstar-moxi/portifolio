@@ -56,7 +56,7 @@ export default function ClientAboutView({ data }) {
     return (
         <div className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto" id="about">
             <div className="w-full flex">
-                <AnimationWapper className="rounded-lg w-full grid-flow-row grid grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-green-main bg-ehite-500 z-10">
+                <AnimationWapper className="rounded-lg w-full grid-flow-row grid grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-[#FF4500] bg-[#000] z-10">
                     {
                         aboutDataInfo.map((infoItem, index) => (
                             <motion.div className={`flex items-center justify-start
@@ -74,8 +74,8 @@ export default function ClientAboutView({ data }) {
                             >
                                 <div className="flex m-0 w-40 sm:w-auto">
                                     <div className="flex flex-col">
-                                        <p className="text-[50px] text-green-main">{infoItem.value}</p>
-                                        <p className="text-[25px] font-bold text-[#000000]">{infoItem.label}</p>
+                                        <p className="text-[50px] text-[#FF4500]">{infoItem.value}</p>
+                                        <p className="text-[25px] font-bold text-[#ffffff]">{infoItem.label}</p>
                                     </div>
                                 </div>
                             </motion.div>
@@ -88,12 +88,12 @@ export default function ClientAboutView({ data }) {
                     <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
                         {
                             headingText.split(' ').map((item, index) => (
-                                <span className={`${index === 8 ? 'text-green-main' : 'text-[#000]'}`}
+                                <span className={`${index === 8 ? 'text-[#FF4500]' : 'text-[#fff]'}`}
                                 >{item} {" "}</span>
                             ))
                         }
                     </h1>
-                    <p className="text-[#000] mt-4 mb-8 font-bold">{data?.aboutme}</p>
+                    <p className="text-[#fff] mt-4 mb-8 font-bold">{data?.aboutme}</p>
                 </div>
             </AnimationWapper>
             <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8">
@@ -119,7 +119,7 @@ export default function ClientAboutView({ data }) {
                                     className="w-full flex justify-center items-center"
                                     variants={skillItemVariant}
                                 >
-                                    <button className="whitespace-nowrap text-ellipsis overflow-hidden py-3 w-[160px] px-6 border-[2px] border-green-main bg-[#fff] text-[#000] font-semibold rounded-lg text-xl tracking-widest hover:shadow-green-main transition-all outline-none">
+                                    <button className="whitespace-nowrap text-ellipsis overflow-hidden py-3 w-[160px] px-6 border-[2px] border-[#FF4500] bg-[#000] text-[#fff] font-semibold rounded-lg text-xl tracking-widest hover:shadow-green-main transition-all outline-none">
                                         {skill}
                                     </button>
                                 </motion.div>

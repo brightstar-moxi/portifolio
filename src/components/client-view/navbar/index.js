@@ -21,10 +21,10 @@ const menuItems = [
         id: "project",
         label: "Project"
     },
-    {
-        id: "contact",
-        label: "Contact"
-    },
+    // {
+    //     id: "contact",
+    //     label: "Contact"
+    // },
 
 ];
 
