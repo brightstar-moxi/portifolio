@@ -63,6 +63,7 @@ export default function AdminView() {
     const [projectViewFormData, setProjectViewFormData] = useState(
         initialProjectFormData
     );
+    // const [contacts, setContacts] = useState([])
 
 
     const [allData, setAllData] = useState({});

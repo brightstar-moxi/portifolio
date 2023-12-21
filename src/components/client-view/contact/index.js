@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import AnimationWapper from "../animation-wrapper"
+import { addData } from "@/services"
 
 const controls = [
     {
@@ -37,15 +38,29 @@ export default function ClientContactView() {
 
 
     const [formData, setFormData] = useState(initialFormData);
-    const [ShowSuccessMessage, setShowSuccessMessage] = useState(false)
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
     async function handleSendMessage() {
         const res = await addData('contact', formData)
+        console.log(res,'contact');
+        if(res && res.success) {
+            setFormData(initialFormData)
+            setShowSuccessMessage(true)
+        }
     }
+
+    useEffect(()=>{
+        if(showSuccessMessage){
+setTimeout(()=>{
+    setShowSuccessMessage(false)
+}, 1500)
+        }
+    }, [showSuccessMessage])
+
     const isVaildForm = () => {
         return formData && formData.name !== '' && formData.email !== '' && formData.message !== '' ? true : false
     }
-    console.log(isVaildForm());
+    console.log(isVaildForm(), "isVaildForm");
 
     return (
         <div className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto" id="contact">
@@ -106,8 +121,14 @@ export default function ClientContactView() {
                                             </div>
                                         ))
                             }
+                            {
+                                showSuccessMessage && <p className="text-[14px] font-bold my-[8px]">Your Message Is Succesfilly Delivered !</p>
+                            }
                             <div className="p-2 w-full">
-                                <button onClick={handleSendMessage} className="disabled:opacity-50 py-3 lg:py-4 px-12 lg:px-16 text-white-500 font-semibold rounded-lg text-2xl tracking-widest bg-green-main outline-none">Send Message</button>
+                               
+                                <button
+                                 disabled={!isVaildForm()}
+                                onClick={handleSendMessage} className="disabled:opacity-50 py-3 lg:py-4 px-12 lg:px-16 text-white-500 font-semibold rounded-lg text-2xl tracking-widest bg-green-main outline-none">Send Message</button>
                             </div>
                         </div>
                     </div>

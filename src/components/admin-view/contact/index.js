@@ -1,32 +1,18 @@
 'use client'
-import FormControl from "../form-controls"
 
-const controls = [
-    {
-        name: 'heading',
-        placeholder: 'Enter heading text',
-        type: "text",
-        label: "Enter heading text"
-    },
-    {
-        name: 'summary',
-        placeholder: 'Enter Career summary',
-        type: "text",
-        label: "Enter Career summary"
-    },
-]
-export default function AdminContactView({ formData, setFormData }){
-    console.log(formData);
+export default function AdminContactView({ data }) {
+    console.log(data);
     return (
-        <div className="w-full">
-            <div className="bg-[#ffffff] shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <FormControl
-                    controls={controls}
-                    formData={formData}
-                    setFormData={setFormData}
-                />
-                <button className=" mt-[10px] border border-green-600 p-4 font-bold  text-{16px}">Add Info</button>
-            </div>
+        <div className="flex flex-col gap-5">
+            {
+                data && data.length ?
+                    data.map(item => <div className="p-5 border">
+                        <p>{item.name}</p>
+                        <p>{item.email}</p>
+                        <p>{item.message}</p>
+                    </div>)
+                    : null
+            }
         </div>
     )
 }
