@@ -161,9 +161,9 @@ circle {
 }
 
 .MuiTimelineDot-root{
-  background-color: rgb(236, 33, 6) !important;
+  background-color: #FF4500 !important;
 }
 
 .MuiTimelineConnector-root{
-  background-color: rgba(236, 33, 6) !important;
+  background-color: #FF4500 !important;
 }

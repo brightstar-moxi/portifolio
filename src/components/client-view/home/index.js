@@ -5,7 +5,7 @@ import AnimationWapper from "../animation-wrapper";
 import { useMemo, useRef } from "react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaTwitter } from 'react-icons/fa'
 import Image from "next/image";
-import allImage from "../../../assets/2-removebg-preview.png"
+import allImage from "../../../assets/Onlystar-removebg-preview.png"
 
 function variants() {
     return {
@@ -28,25 +28,25 @@ const socialIcon = [
     {
         id: 'facebook',
         icon: <FaFacebookF
-            color="rgb(236, 33, 6)"
+            color="rgb(255, 57, 8)"
             className="w-[40px] h-[40px] "
         />
     },
     {
         id: 'twitter',
         icon: <FaTwitter
-            color="rgb(236, 33, 6)"
+            color="rgb(255, 57, 8)"
             className="w-[40px] h-[40px] " />
     },
     {
         id: 'linkedin',
         icon: <FaLinkedinIn
-            color="rgb(236, 33, 6)"
+            color="rgb(255, 57, 8)"
             className="w-[40px] h-[40px] " />
     },
     {
         id: 'instagram',
-        icon: <FaInstagram color="rgb(236, 33, 6)"
+        icon: <FaInstagram color="rgb(255, 57, 8)"
             className="w-[40px] h-[40px] " />
     },
 ]

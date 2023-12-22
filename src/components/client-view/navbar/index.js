@@ -85,7 +85,7 @@ export default function Navbar() {
             </nav>
         </header>
         <nav className="fixed lg:hidden bottom-0 left-0 right-0 z-20 px-4 sm:px-8 shadow-t">
-            <div className="bg-white-500 sm:px-3">
+            <div className="bg-[#000] sm:px-3">
                 <ul className="overflow-x-auto flex w-full justify-between items-center text-[#000]">
                     <CreateMenus
                         setActiveLink={setActiveLink}

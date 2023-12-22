@@ -38,10 +38,10 @@ export default function AdminProjectView({ formData, setFormData, handleSaveData
                 {
                   data && data.length ?
                   data.map((item)=> <div className="flex flex-col gap-4 border p-4 border-green-600">
-                    <p>{item.name}</p>
-                    <p>{item.technologies}</p>
-                    <p>{item.website}</p>
-                    <p>{item.github}</p>
+                    <p className="text-[#000]">{item.name}</p>
+                    <p className="text-[#000]">{item.technologies}</p>
+                    <p className="text-[#000]">{item.website}</p>
+                    <p className="text-[#000]">{item.github}</p>
                    
                   </div>)
                   :null

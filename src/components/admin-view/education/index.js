@@ -31,10 +31,10 @@ export default function AdminEducationView({ formData, setFormData, handleSaveDa
             <div className="mb-10">
                 {
                   data && data.length ?
-                  data.map((item)=> <div className="flex flex-col gap-4 border p-4 border-green-600">
-                    <p>{item.degree}</p>
-                    <p>{item.year}</p>
-                    <p>{item.college}</p>
+                  data.map((item)=> <div className="flex flex-col gap-4 border p-4 border-green-600 ">
+                    <p className="text-[#000]">{item.degree}</p>
+                    <p className="text-[#000]">{item.year}</p>
+                    <p className="text-[#000]">{item.college}</p>
                     
                   
                   </div>)
