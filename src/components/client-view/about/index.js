@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import AnimationWapper from "../animation-wrapper";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import aboutMeImage from "../../../assets/undraw_Developer_activity_re_39tg.png"
+import aboutMeImage from "../../../assets/pppp-removebg-preview.png"
 
 function variants() {
     return {
