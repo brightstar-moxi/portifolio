@@ -260,8 +260,8 @@ export default function AdminView() {
             </nav>
             <div className="mt-10 p-10 text-[#000]">
                 {menuItems.map(
-                    (item) => item.id === currentSelectedTab && item.component
-                )}
+                    (item) => ( item.id === currentSelectedTab && item.component
+                ))}
             </div>
         </div>
     );
