@@ -1,5 +1,7 @@
+// const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export async function addData(currentTab, formData){
     try {
+        
         const response = await fetch(`/api/${currentTab}/add`,{
             method: "POST",
             headers:{

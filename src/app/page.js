@@ -1,13 +1,17 @@
 import ClientAboutView from '@/components/client-view/about'
 import ClientContactView from '@/components/client-view/contact'
-import ClientEducationView from '@/components/client-view/education'
+// import ClientEducationView from '@/components/client-view/education'
 import ClientexprienceView from '@/components/client-view/experience'
 import ClientHomeView from '@/components/client-view/home'
 import ClientProjectView from '@/components/client-view/project'
+// import * as dotenv from 'dotenv'
 
 async function extractAllDatas(currentSection) {
+   const apiUrl =  process.env.NEXT_PUBLIC_API_URL ;
+   console.log('API_URL:',  apiUrl);
+
   try {
-    const res = await fetch(`http://localhost:3000/api/${currentSection}/get`, {
+    const res = await fetch(`${apiUrl}/api/${currentSection}/get`, {
       method: "GET",
       cache: 'no-store'
     });

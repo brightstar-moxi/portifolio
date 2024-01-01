@@ -67,7 +67,7 @@ export default function ClientHomeView({ data }) {
                         <h1 className="mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal">
                             {
                                 data && data.length ? data[0]?.heading
-                                    .split(" ").map((item, index) => (<span
+                                    .split(" ").map((item, index) => (<span key={item.id, index.id}
                                         className={`${index === 2 || index === 3 ? "text-[#FF4500]" : "text-[#fff]"}`}
                                     >
                                         {item} {" "}
@@ -84,7 +84,7 @@ export default function ClientHomeView({ data }) {
                             {
                                 socialIcon.map((item) => (
                                     <motion.div
-                                        key={item.id}
+                                        key={item.id}  // Add key prop here
                                         initial={{ scale: 0 }}
                                         animate={{ rotate: 360, scale: 1 }}
                                         transition={{
@@ -96,12 +96,11 @@ export default function ClientHomeView({ data }) {
                                         whileHover={{ scale: 1.2, rotate: 360 }}
                                         whileTap={{ scale: 0.8, rotate: -360, borderRadius: "100%" }}
                                     >
-
                                         {item.icon}
-
                                     </motion.div>
                                 ))
                             }
+
 
                         </motion.div>
 
@@ -110,20 +109,20 @@ export default function ClientHomeView({ data }) {
                     </div>
                     <motion.div ref={containerRef} className="flex w-full justify-end">
                         <motion.div
-                        drag
-                        dragConstraints={containerRef}
-                        className="w-[400px] h-[400px] relative bg-[#FF4500]">
-                           
-                            <div  className="w-[400px] h-[400px] top-[40px] left-[-30px] rounded-lg border-[6px] border-[#ffffff] absolute"></div>
-                       <Image
-                         src={allImage}
-                         alt="Profile Picture"
-                         layout="responsive"
-                         quality={100}
-                         height={300}
-                         width={300}
-                         className="absolute top-[-15px]"
-                       />
+                            drag
+                            dragConstraints={containerRef}
+                            className="w-[400px] h-[400px] relative bg-[#FF4500]">
+
+                            <div className="w-[400px] h-[400px] top-[40px] left-[-30px] rounded-lg border-[6px] border-[#ffffff] absolute"></div>
+                            <Image
+                                src={allImage}
+                                alt="Profile Picture"
+                                layout="responsive"
+                                quality={100}
+                                height={300}
+                                width={300}
+                                className="absolute top-[-15px]"
+                            />
                         </motion.div>
                     </motion.div>
                 </motion.div>
