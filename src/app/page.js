@@ -6,25 +6,47 @@ import ClientHomeView from '@/components/client-view/home'
 import ClientProjectView from '@/components/client-view/project'
 // import * as dotenv from 'dotenv'
 
-async function extractAllDatas(currentSection) {
-   const apiUrl =  process.env.NEXT_PUBLIC_API_URL ;
-   console.log('API_URL:',  apiUrl);
+// async function extractAllDatas(currentSection) {
+//    const apiUrl =  process.env.NEXT_PUBLIC_API_URL ;
+//    console.log('API_URL:',  apiUrl);
 
+//   try {
+//     const res = await fetch(`${apiUrl}/api/${currentSection}/get`, {
+//       method: "GET",
+//       cache: 'no-store'
+//     });
+
+//     if (!res.ok) {
+//       throw new Error(`HTTP error! Status: ${res.status}`);
+//     }
+
+//     const data = await res.json();
+//     return data && data.data;
+//   } catch (error) {
+//     console.error("Error fetching data:", error.message);
+//     return null; // Handle error gracefully, return null or an empty array/object
+//   }
+// }
+
+async function extractAllDatas(currentSection) {
   try {
-    const res = await fetch(`${apiUrl}/api/${currentSection}/get`, {
-      method: "GET",
-      cache: 'no-store'
-    });
+    const res = await fetch(
+      `http://localhost:3000/api/${currentSection}/get`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
 
     const data = await res.json();
-    return data && data.data;
+    return data?.data;
   } catch (error) {
     console.error("Error fetching data:", error.message);
-    return null; // Handle error gracefully, return null or an empty array/object
+    return null;
   }
 }
 
