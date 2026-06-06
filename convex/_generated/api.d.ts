@@ -9,7 +9,11 @@
  */
 
 import type * as about from "../about.js";
+import type * as contact from "../contact.js";
+import type * as education from "../education.js";
+import type * as experience from "../experience.js";
 import type * as home from "../home.js";
+import type * as projects from "../projects.js";
 
 import type {
   ApiFromModules,
@@ -19,7 +23,11 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   about: typeof about;
+  contact: typeof contact;
+  education: typeof education;
+  experience: typeof experience;
   home: typeof home;
+  projects: typeof projects;
 }>;
 
 /**

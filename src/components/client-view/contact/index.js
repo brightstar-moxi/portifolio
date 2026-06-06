@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react"
 import AnimationWapper from "../animation-wrapper"
-import { addData } from "@/services"
-
+// import { addData } from "@/services"
+import { useMutation } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 const controls = [
     {
         name: 'name',
@@ -36,18 +37,34 @@ const initialFormData = {
 
 export default function ClientContactView() {
 
+    const createContact = useMutation(api.contact.create);
 
     const [formData, setFormData] = useState(initialFormData);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
+    // async function handleSendMessage() {
+    //     const res = await addData('contact', formData)
+    //     console.log(res,'contact');
+    //     if(res && res.success) {
+    //         setFormData(initialFormData)
+    //         setShowSuccessMessage(true)
+    //     }
+    // }
+
     async function handleSendMessage() {
-        const res = await addData('contact', formData)
-        console.log(res,'contact');
-        if(res && res.success) {
-            setFormData(initialFormData)
-            setShowSuccessMessage(true)
-        }
-    }
+  try {
+    await createContact({
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    });
+
+    setFormData(initialFormData);
+    setShowSuccessMessage(true);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
     useEffect(()=>{
         if(showSuccessMessage){

@@ -36,7 +36,7 @@ export default defineSchema({
     github: v.string(),
   }),
 
-  contacts: defineTable({
+  contact: defineTable({
     name: v.string(),
     email: v.string(),
     message: v.string(),

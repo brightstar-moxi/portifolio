@@ -5,6 +5,8 @@ import ClientexprienceView from '@/components/client-view/experience'
 import ClientHomeView from '@/components/client-view/home'
 import ClientProjectView from '@/components/client-view/project'
 // import * as dotenv from 'dotenv'
+import { fetchQuery } from "convex/nextjs";
+import { api } from "../../convex/_generated/api";
 
 // async function extractAllDatas(currentSection) {
 //    const apiUrl =  process.env.NEXT_PUBLIC_API_URL ;
@@ -28,34 +30,44 @@ import ClientProjectView from '@/components/client-view/project'
 //   }
 // }
 
-async function extractAllDatas(currentSection) {
-  try {
-    const res = await fetch(
-      `http://localhost:3000/api/${currentSection}/get`,
-      {
-        method: "GET",
-        cache: "no-store",
-      }
-    );
+// async function extractAllDatas(currentSection) {
+//   try {
+//     const res = await fetch(
+//       `http://localhost:3000/api/${currentSection}/get`,
+//       {
+//         method: "GET",
+//         cache: "no-store",
+//       }
+//     );
 
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
+//     if (!res.ok) {
+//       throw new Error(`HTTP error! Status: ${res.status}`);
+//     }
 
-    const data = await res.json();
-    return data?.data;
-  } catch (error) {
-    console.error("Error fetching data:", error.message);
-    return null;
-  }
-}
+//     const data = await res.json();
+//     return data?.data;
+//   } catch (error) {
+//     console.error("Error fetching data:", error.message);
+//     return null;
+//   }
+// }
 
 export default async function Home() {
-  const homeSectionData = await extractAllDatas('home');
-  const aboutSectionData = await extractAllDatas('about');
-  const experienceSectionData = await extractAllDatas('experience');
-  const educationSectionData = await extractAllDatas('education');
-  const projectSectionData = await extractAllDatas('project');
+  // const homeSectionData = await extractAllDatas('home');
+  const homeSectionData =
+  await fetchQuery(api.home.get);
+  // const aboutSectionData = await extractAllDatas('about');
+  const aboutSectionData =
+  await fetchQuery(api.about.get);
+  // const experienceSectionData = await extractAllDatas('experience');
+  const experienceSectionData =
+  await fetchQuery(api.experience.get);
+  // const educationSectionData = await extractAllDatas('education');
+  const educationSectionData =
+  await fetchQuery(api.education.get);
+  // const projectSectionData = await extractAllDatas('project');
+  const projectSectionData =
+  await fetchQuery(api.projects.get);
   // const contactSectionData = await extractAllDatas('contact');
 
   return (
