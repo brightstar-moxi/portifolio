@@ -248,7 +248,7 @@ export default function AdminView() {
 
                 case "about":
                     if (update) {
-                        await updateHome(aboutViewFormData);
+                        await updateAbout(aboutViewFormData);
                     } else {
                         const { id, ...aboutData } = aboutViewFormData;
                         await createAbout(aboutData);
@@ -257,7 +257,7 @@ export default function AdminView() {
 
                 case "experience":
                     if (update) {
-                        await updateHome(experienceViewFormData);
+                        await updateExperience(experienceViewFormData);
                     } else {
                         const { id, ...experienceData } = experienceViewFormData;
                         await createExperience(experienceData);
@@ -265,7 +265,7 @@ export default function AdminView() {
                     break;
                 case "education":
                     if (update) {
-                        await updateHome(educationViewFormData);
+                        await updateEducation(educationViewFormData);
                     } else {
                         const { id, ...educationData } = educationViewFormData;
                         await createEducation(educationData);
@@ -274,7 +274,7 @@ export default function AdminView() {
 
                 case "project":
                     if (update) {
-                        await updateHome(projectViewFormData);
+                        await updateProject(projectViewFormData);
                     } else {
                         const { id, ...projectData } = projectViewFormData;
                         await createProject(projectData);

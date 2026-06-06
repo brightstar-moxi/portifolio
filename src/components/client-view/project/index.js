@@ -60,7 +60,8 @@ const router = useRouter()
                                 <div className="flex flex-col">
                                     <h3 className="text-3xl text-[#fff] capitalize font-extrabold">{item.name}</h3>
                                     <p className="text-sm mt-2 text-white-500 capitalize font-bold">
-                            {item.createdAt.split("T")[0]}
+                            {/* {item.createdAt.split("T")[0]} */}
+                              {new Date(item._creationTime).toLocaleDateString()}
                             </p>
                             <div className="grid gap-2 mt-5 grid-cols-2 h-full max-h-[200px] w-full">
                                 {
