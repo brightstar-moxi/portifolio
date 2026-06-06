@@ -1,53 +1,53 @@
-import connectToDB from "@/database";
-import User from "@/models/User";
-import { compare, hash } from "bcryptjs";
-import { NextResponse } from "next/server";
+// import connectToDB from "@/database";
+// import User from "@/models/User";
+// import { compare, hash } from "bcryptjs";
+// import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
-export async function POST(req) {
-  try {
-    await connectToDB();
-    const { username, password } = await req.json();
+// export async function POST(req) {
+//   try {
+//     await connectToDB();
+//     const { username, password } = await req.json();
 
-    const checkUser = await User.findOne({ username });
+//     const checkUser = await User.findOne({ username });
 
-    if (!checkUser) {
-      return NextResponse.json({
-        success: true,
-        message: "User name is  present !Please try again",
-      });
-    }
+//     if (!checkUser) {
+//       return NextResponse.json({
+//         success: true,
+//         message: "User name is  present !Please try again",
+//       });
+//     }
 
-    const hashPassword = await hash(checkUser.password, 12);
-    const checkPassword = await compare(password, hashPassword);
+//     const hashPassword = await hash(checkUser.password, 12);
+//     const checkPassword = await compare(password, hashPassword);
 
-    if (!checkPassword) {
-      return NextResponse.json({
-        success: false,
-        message: "Wrong password. Please try again",
-      });
-    }
-    const finalData = {
+//     if (!checkPassword) {
+//       return NextResponse.json({
+//         success: false,
+//         message: "Wrong password. Please try again",
+//       });
+//     }
+//     const finalData = {
 
-      user: {
+//       user: {
 
-        username: checkUser.username,
+//         username: checkUser.username,
 
-      },
-    };
+//       },
+//     };
 
-    return NextResponse.json({
-      success: true,
-      message: "Login successfull",
-      finalData
-    });
-  } catch (e) {
-    console.log(e);
+//     return NextResponse.json({
+//       success: true,
+//       message: "Login successfull",
+//       finalData
+//     });
+//   } catch (e) {
+//     console.log(e);
 
-    return NextResponse.json({
-      success: false,
-      message: "Something goes wrong !Please try again",
-    });
-  }
-}
+//     return NextResponse.json({
+//       success: false,
+//       message: "Something goes wrong !Please try again",
+//     });
+//   }
+// }

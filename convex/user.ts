@@ -1,30 +1,29 @@
-import { mutation, query } from "./_generated/server";
+import { mutation } from "./_generated/server";
 import { v } from "convex/values";
 
-//signup
 export const signup = mutation({
   args: {
     username: v.string(),
     password: v.string(),
   },
   handler: async (ctx, args) => {
-    const existing = await ctx.db
+    const existingUser = await ctx.db
       .query("users")
-      .filter((q) =>
-        q.eq(q.field("username"), args.username)
-      )
+      .filter((q) => q.eq(q.field("username"), args.username))
       .first();
 
-    if (existing) {
+    if (existingUser) {
       throw new Error("User already exists");
     }
 
-    return await ctx.db.insert("users", args);
+    return await ctx.db.insert("users", {
+      username: args.username,
+      password: args.password,
+    });
   },
 });
 
-//login
-export const login = query({
+export const login = mutation({
   args: {
     username: v.string(),
     password: v.string(),

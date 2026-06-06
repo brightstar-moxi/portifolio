@@ -1,112 +1,88 @@
-"use client"
+"use client";
 
-// import { registerNewUser } from '@/services/signup';
-import { useState } from 'react';
-// import { useRouter } from 'next/router';
+import { useState } from "react";
+import { useMutation } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 
-const Register = () => {
+export default function Register() {
+  const signup = useMutation(api.user.signup);
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
 
-  //   const router = useRouter();
+  const [message, setMessage] = useState("");
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
+
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
     }));
-    console.log(value);
-  };
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // Implement registration logic here (e.g., send data to a backend API)
 
-    // const data = await registerNewUser(formData);
-    const signup = useMutation(api.user.signup);
-    //  if (data.success){
-    //   setIsRegistered(true);
-    //   setFormData(initialFormData);
-    //  }else{
+    try {
+      await signup({
+        username: formData.username,
+        password: formData.password,
+      });
 
-    //   setFormData(initialFormData);
-    //  }
-    // For demonstration purposes, navigate to the home page after registration
+      setMessage("User registered successfully");
 
-
-
-
-
-
-    console.log(signup);
-
-    // router.push('/');
-  };
-
-  // return (
-  //   <div>
-  //     <h1>Registration</h1>
-  //     <form onSubmit={handleSubmit}>
-  //       <label>
-  //         Username:
-  //         <input
-  //           type="text"
-  //           name="username"
-  //           value={formData.username}
-  //           onChange={handleChange}
-
-  //           className="shadow border rounded w-full py-2 px-3 text-gray-700 tracking-wide focus:outline-none focus:shadow-outline"
-  //         />
-  //       </label>
-  //       <br />
-
-  //       <label>
-  //         Password:
-  //         <input
-  //           type="password"
-  //           name="password"
-  //           value={formData.password}
-  //           onChange={handleChange}
-  //           className="shadow border rounded w-full
-  //            py-2 px-3 text-gray-700 tracking-wide focus:outline-none focus:shadow-outline"
-  //         />
-  //       </label>
-  //       <br />
-  //       <button type="submit" 
-  //       className=" mt-[10px] border border-green-600 p-4 font-bold  text-[16px]">Register</button>
-  //     </form>
-  //   </div>
-  // );
+      setFormData({
+        username: "",
+        password: "",
+      });
+    } catch (error) {
+      console.error(error);
+      setMessage("Registration failed");
+    }
+  }
 
   return (
-  <div className="min-h-screen bg-black text-white p-10">
-    <h1 className="text-3xl mb-6">Registration</h1>
+    <div className="min-h-screen bg-black text-white p-10">
+      <h1 className="text-3xl mb-6">Registration</h1>
 
-    <form className="flex flex-col gap-4 max-w-md">
-      <input
-        type="text"
-        placeholder="Username"
-        className="border border-orange-500 bg-black text-white p-3"
-      />
-
-      <input
-        type="password"
-        placeholder="Password"
-        className="border border-orange-500 bg-black text-white p-3"
-      />
-
-      <button
-        type="submit"
-        className="bg-orange-500 p-3 text-white"
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 max-w-md"
       >
-        Register
-      </button>
-    </form>
-  </div>
-);
-};
+        <input
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          placeholder="Username"
+          className="border border-orange-500 bg-black text-white p-3 rounded"
+        />
 
-export default Register;
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Password"
+          className="border border-orange-500 bg-black text-white p-3 rounded"
+        />
+
+        <button
+          type="submit"
+          className="bg-orange-500 p-3 rounded font-semibold"
+        >
+          Register
+        </button>
+
+        {message && (
+          <p className="text-green-400">
+            {message}
+          </p>
+        )}
+      </form>
+    </div>
+  );
+}
