@@ -14,6 +14,7 @@ import Login from "@/components/admin-view/login";
 import AdminProjectView from "@/components/admin-view/project";
 // import { addData, getData, login, updateData } from "@/services";
 import { useEffect, useState } from "react";
+import Sidebar from "@/components/admin-view/sidebar";
 
 const initialHomeFormData = {
     id: "",
@@ -61,6 +62,7 @@ const initialLoginFormData = {
 };
 
 export default function AdminView() {
+    const [collapsed, setCollapsed] = useState(false);
     const homeData = useQuery(api.home.get);
     const aboutData = useQuery(api.about.get);
     const experienceData = useQuery(api.experience.get);
@@ -126,7 +128,10 @@ export default function AdminView() {
         {
             id: "dashboard",
             label: "Dashboard",
-            component: <Dashboard />,
+            component: (
+                <Dashboard
+                    setCurrentSelectedTab={setCurrentSelectedTab}
+                />)
         },
         {
             id: "home",
@@ -147,13 +152,13 @@ export default function AdminView() {
             label: "About",
             component: (
                 <AdminAboutView
-  formData={aboutViewFormData}
-  setFormData={setAboutViewFormData}
-  handleSaveData={handleSaveData}
-  data={allData?.about}
-  handleEdit={handleEditAbout}
-  handleDelete={handleDeleteAbout}
-/>
+                    formData={aboutViewFormData}
+                    setFormData={setAboutViewFormData}
+                    handleSaveData={handleSaveData}
+                    data={allData?.about}
+                    handleEdit={handleEditAbout}
+                    handleDelete={handleDeleteAbout}
+                />
             ),
         },
         {
@@ -300,20 +305,20 @@ export default function AdminView() {
     }
 
     //About Edit
-   function handleEditAbout(item) {
-  console.log(item);
+    function handleEditAbout(item) {
+        console.log(item);
 
-  setAboutViewFormData({
-    id: item._id,
-    aboutme: item.aboutme,
-    noofprojects: item.noofprojects,
-    yearofexperience: item.yearofexperience,
-    noofclients: item.noofclients,
-    skills: item.skills,
-  });
+        setAboutViewFormData({
+            id: item._id,
+            aboutme: item.aboutme,
+            noofprojects: item.noofprojects,
+            yearofexperience: item.yearofexperience,
+            noofclients: item.noofclients,
+            skills: item.skills,
+        });
 
-  setUpdate(true);
-}
+        setUpdate(true);
+    }
 
     //education delete
     async function handleDeleteEducation(id) {
@@ -399,13 +404,13 @@ export default function AdminView() {
                     break;
 
                 case "about":
-                   case "about":
-  console.log("aboutViewFormData", aboutViewFormData);
+                case "about":
+                    console.log("aboutViewFormData", aboutViewFormData);
 
-  update
-    ? await updateAbout(aboutViewFormData)
-    : await createAbout(aboutViewFormData);
-  break;
+                    update
+                        ? await updateAbout(aboutViewFormData)
+                        : await createAbout(aboutViewFormData);
+                    break;
                 case "experience":
                     update
                         ? await updateExperience({
@@ -609,21 +614,25 @@ export default function AdminView() {
 
 
     return (
-        <AdminLayout
-            currentSelectedTab={currentSelectedTab}
-            setCurrentSelectedTab={setCurrentSelectedTab}
-            resetFormDatas={resetFormDatas}
-            setUpdate={setUpdate}
-            setAuthUser={setAuthUser}
-        >
-            <div className="p-8">
-                {menuItems.map(
-                    (item) =>
-                        item.id === currentSelectedTab &&
-                        item.component
-                )}
-            </div>
-        </AdminLayout>
+        <>
+           
+
+            <AdminLayout
+                currentSelectedTab={currentSelectedTab}
+                setCurrentSelectedTab={setCurrentSelectedTab}
+                resetFormDatas={resetFormDatas}
+                setUpdate={setUpdate}
+                setAuthUser={setAuthUser}
+            >
+                <div className="p-8">
+                    {menuItems.map(
+                        (item) =>
+                            item.id === currentSelectedTab &&
+                            item.component
+                    )}
+                </div>
+            </AdminLayout>
+        </>
     );
 
 }

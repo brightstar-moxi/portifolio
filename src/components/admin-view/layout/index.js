@@ -1,5 +1,5 @@
 "use client";
-
+import { useState } from "react";
 import Sidebar from "../sidebar";
 import Navbar from "../navbar";
 
@@ -11,15 +11,27 @@ export default function AdminLayout({
   setUpdate,
   setAuthUser,
 }) {
+    const [collapsed, setCollapsed] = useState(false);
   return (
     <div className="flex min-h-screen bg-[#0b0f14] text-orange-100">
-      <Sidebar
-        currentSelectedTab={currentSelectedTab}
-        setCurrentSelectedTab={setCurrentSelectedTab}
-        resetFormDatas={resetFormDatas}
-        setUpdate={setUpdate}
-        setAuthUser={setAuthUser}
-      />
+    <Sidebar
+  menuItems={[
+    { id: "dashboard", label: "Dashboard" },
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "experience", label: "Experience" },
+    { id: "education", label: "Education" },
+    { id: "project", label: "Projects" },
+    { id: "contact", label: "Contact" },
+  ]}
+  currentSelectedTab={currentSelectedTab}
+  setCurrentSelectedTab={setCurrentSelectedTab}
+  resetFormDatas={resetFormDatas}
+  setUpdate={setUpdate}
+  setAuthUser={setAuthUser}
+  collapsed={collapsed}
+  setCollapsed={setCollapsed}
+/>
       <div className="flex-1 flex flex-col">
   <Navbar />
 
