@@ -31,3 +31,11 @@ export const update = mutation({
     await ctx.db.patch(id, data);
   },
 });
+export const remove = mutation({
+  args: {
+    id: v.id("education"),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
+  },
+});

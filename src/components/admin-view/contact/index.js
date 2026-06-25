@@ -1,7 +1,7 @@
 'use client'
 
 export default function AdminContactView({ data }) {
-    console.log(data);
+    // console.log(data);
     return (
         <div className="flex flex-col gap-5 bg-[#FF4500]">
             {
@@ -13,6 +13,16 @@ export default function AdminContactView({ data }) {
                     </div>)
                     : null
             }
+            <DataTable
+  data={data}
+  columns={[
+    "name",
+    "email",
+    "message",
+  ]}
+  onDelete={handleDelete}
+  onEdit={() => {}}
+/>
         </div>
     )
 }

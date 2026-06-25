@@ -1,6 +1,7 @@
 "use client";
 
 import FormControls from "../form-controls";
+import DataTable from "../data-table";
 
 const controls = [
   {
@@ -39,6 +40,9 @@ export default function AdminAboutView({
   formData,
   setFormData,
   handleSaveData,
+   data,
+  handleEdit,
+  handleDelete
 }) {
   return (
     <div className="max-w-md">
@@ -63,6 +67,17 @@ export default function AdminAboutView({
         >
           Update
         </button>
+        <DataTable
+  data={data}
+  columns={[
+  "aboutme",
+  "noofprojects",
+  "yearofexperience",
+  "noofclients",
+]}
+  onEdit={handleEdit}
+  onDelete={handleDelete}
+/>
       </div>
     </div>
   );

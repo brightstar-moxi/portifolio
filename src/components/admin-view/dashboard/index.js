@@ -9,6 +9,7 @@ export default function Dashboard() {
     const experience = useQuery(api.experience.get) || [];
     const projects = useQuery(api.projects.get) || [];
     const contacts = useQuery(api.contact.get) || [];
+const education = useQuery(api.education.get) || [];
 
     const cards = [
         {
@@ -27,6 +28,14 @@ export default function Dashboard() {
             title: "Profile",
             value: about.length,
         },
+        {
+    title: "Education",
+    value: education.length,
+},
+{
+    title: "Home",
+    value: home.length,
+},
     ];
 
     return (
@@ -35,7 +44,7 @@ export default function Dashboard() {
                 Overview
             </h2>
 
-            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-6">
                 {cards.map((card) => (
                     <div
                         key={card.title}
@@ -50,7 +59,80 @@ export default function Dashboard() {
                         </h3>
                     </div>
                 ))}
+                <div className="mt-10">
+    <h3 className="text-white text-2xl font-bold mb-4">
+        Recent Messages
+    </h3>
+
+    <div className="bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden">
+        <table className="w-full">
+            <thead>
+                <tr className="border-b border-zinc-800">
+                    <th className="text-left p-4 text-zinc-400">
+                        Name
+                    </th>
+
+                    <th className="text-left p-4 text-zinc-400">
+                        Email
+                    </th>
+
+                    <th className="text-left p-4 text-zinc-400">
+                        Message
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {contacts.slice(0, 5).map((item) => (
+                    <tr
+                        key={item._id}
+                        className="border-b border-zinc-800"
+                    >
+                        <td className="p-4 text-white">
+                            {item.name}
+                        </td>
+
+                        <td className="p-4 text-white">
+                            {item.email}
+                        </td>
+
+                        <td className="p-4 text-white">
+                            {item.message}
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div className="mt-10">
+    <h3 className="text-white text-2xl font-bold mb-4">
+        Quick Actions
+    </h3>
+
+    <div className="flex gap-4 flex-wrap">
+        <button
+            className="bg-orange-500 px-6 py-3 rounded-xl text-white font-semibold"
+        >
+            Add Project
+        </button>
+
+        <button
+            className="bg-zinc-800 px-6 py-3 rounded-xl text-white font-semibold"
+        >
+            Add Experience
+        </button>
+
+        <button
+            className="bg-zinc-800 px-6 py-3 rounded-xl text-white font-semibold"
+        >
+            View Messages
+        </button>
+    </div>
+</div>
             </div>
+            
         </div>
     );
 }

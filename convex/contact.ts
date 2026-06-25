@@ -17,3 +17,11 @@ export const create = mutation({
     return await ctx.db.insert("contact", args);
   },
 });
+export const remove = mutation({
+  args: {
+    id: v.id("contact"),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
+  },
+});

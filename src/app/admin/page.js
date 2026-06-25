@@ -70,6 +70,10 @@ export default function AdminView() {
 
     const deleteProject = useMutation(api.projects.remove);
     const deleteExperience = useMutation(api.experience.remove);
+    const deleteEducation = useMutation(api.education.remove);
+    const deleteAbout = useMutation(api.about.remove);
+    const deleteHome = useMutation(api.home.remove);
+    const deleteContact = useMutation(api.contact.remove);
 
     const loginUser = useMutation(api.user.login);
     const createHome = useMutation(api.home.create);
@@ -132,6 +136,9 @@ export default function AdminView() {
                     formData={homeViewFormData}
                     setFormData={setHomeViewFormData}
                     handleSaveData={handleSaveData}
+                    data={allData?.home}
+                    handleEdit={handleEditHome}
+                    handleDelete={handleDeleteHome}
                 />
             ),
         },
@@ -140,10 +147,13 @@ export default function AdminView() {
             label: "About",
             component: (
                 <AdminAboutView
-                    formData={aboutViewFormData}
-                    setFormData={setAboutViewFormData}
-                    handleSaveData={handleSaveData}
-                />
+  formData={aboutViewFormData}
+  setFormData={setAboutViewFormData}
+  handleSaveData={handleSaveData}
+  data={allData?.about}
+  handleEdit={handleEditAbout}
+  handleDelete={handleDeleteAbout}
+/>
             ),
         },
         {
@@ -169,6 +179,8 @@ export default function AdminView() {
                     handleSaveData={handleSaveData}
                     setFormData={setEducationViewFormData}
                     data={allData?.education}
+                    handleEdit={handleEditEducation}
+                    handleDelete={handleDeleteEducation}
                 />
             ),
         },
@@ -192,8 +204,9 @@ export default function AdminView() {
             id: "contact",
             label: "Contact",
             component: <AdminContactView
-                data={allData && allData?.contact}
-            />,
+                data={allData?.contact}
+                handleDelete={handleDeleteContact}
+            />
         },
     ];
 
@@ -251,6 +264,76 @@ export default function AdminView() {
     //     }
     // }
 
+    //Contact Delete
+    async function handleDeleteContact(id) {
+        await deleteContact({ id });
+    }
+
+    //
+
+    //Home Delete
+    async function handleDeleteHome(id) {
+        try {
+            await deleteHome({ id });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    //Home Edit
+    function handleEditHome(item) {
+        setHomeViewFormData({
+            _id: item._id,
+            heading: item.heading,
+            summary: item.summary,
+        });
+
+        setUpdate(true);
+    }
+
+    //About delete
+    async function handleDeleteAbout(id) {
+        try {
+            await deleteAbout({ id });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    //About Edit
+   function handleEditAbout(item) {
+  console.log(item);
+
+  setAboutViewFormData({
+    id: item._id,
+    aboutme: item.aboutme,
+    noofprojects: item.noofprojects,
+    yearofexperience: item.yearofexperience,
+    noofclients: item.noofclients,
+    skills: item.skills,
+  });
+
+  setUpdate(true);
+}
+
+    //education delete
+    async function handleDeleteEducation(id) {
+        try {
+            await deleteEducation({ id });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    //education edit
+    function handleEditEducation(item) {
+        setEducationViewFormData({
+            _id: item._id,
+            degree: item.degree,
+            year: item.year,
+            college: item.college,
+        });
+
+        setUpdate(true);
+    }
 
     //experience delete
     async function handleDeleteExperience(id) {
@@ -303,23 +386,26 @@ export default function AdminView() {
         try {
             switch (currentSelectedTab) {
                 case "home":
-                    if (update) {
-                        await updateHome(homeViewFormData);
-                    } else {
-                        const { id, ...homeData } = homeViewFormData;
-                        await createHome(homeData);
-                    }
+                    update
+                        ? await updateHome({
+                            id: homeViewFormData._id,
+                            heading: homeViewFormData.heading,
+                            summary: homeViewFormData.summary,
+                        })
+                        : await createHome({
+                            heading: homeViewFormData.heading,
+                            summary: homeViewFormData.summary,
+                        });
                     break;
 
                 case "about":
-                    if (update) {
-                        await updateAbout(aboutViewFormData);
-                    } else {
-                        const { id, ...aboutData } = aboutViewFormData;
-                        await createAbout(aboutData);
-                    }
-                    break;
+                   case "about":
+  console.log("aboutViewFormData", aboutViewFormData);
 
+  update
+    ? await updateAbout(aboutViewFormData)
+    : await createAbout(aboutViewFormData);
+  break;
                 case "experience":
                     update
                         ? await updateExperience({
@@ -339,12 +425,18 @@ export default function AdminView() {
                         });
                     break;
                 case "education":
-                    if (update) {
-                        await updateEducation(educationViewFormData);
-                    } else {
-                        const { id, ...educationData } = educationViewFormData;
-                        await createEducation(educationData);
-                    }
+                    update
+                        ? await updateEducation({
+                            id: educationViewFormData._id,
+                            degree: educationViewFormData.degree,
+                            year: educationViewFormData.year,
+                            college: educationViewFormData.college,
+                        })
+                        : await createEducation({
+                            degree: educationViewFormData.degree,
+                            year: educationViewFormData.year,
+                            college: educationViewFormData.college,
+                        });
                     break;
 
                 case "project":

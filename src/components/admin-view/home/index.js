@@ -1,6 +1,7 @@
 "use client";
 
 import FormControls from "../form-controls";
+import DataTable from "../data-table";
 
 const controls = [
   {
@@ -21,6 +22,9 @@ export default function AdminHomeView({
   formData,
   setFormData,
   handleSaveData,
+  data,
+   handleEdit,
+  handleDelete,
 }) {
   return (
     <div className="max-w-4xl mx-auto">
@@ -57,6 +61,15 @@ export default function AdminHomeView({
           >
             Save Changes
           </button>
+               <DataTable
+  data={data}
+  columns={[
+  "heading",
+  "summary",
+]}
+  onEdit={handleEdit}
+  onDelete={handleDelete}
+/>
         </div>
       </div>
     </div>
