@@ -24,16 +24,16 @@ export default function FormControls({
                 })
               }
               className="
-              w-full
-              min-h-[120px]
-              bg-zinc-950
-              border
-              bg-[#0b0f14]
-              border-zinc-800
-              rounded-lg
-              px-4
-              py-3
-              text-white
+w-full
+rounded-lg
+border
+border-zinc-700
+bg-zinc-950
+px-4
+py-3
+text-white
+bg-[#0b0f14]
+
               focus:outline-none
               focus:border-orange-500
               "

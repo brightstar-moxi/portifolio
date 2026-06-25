@@ -36,10 +36,19 @@ export default function AdminLayout({
   collapsed={collapsed}
   setCollapsed={setCollapsed}
 />
-      <div className="flex-1 flex flex-col">
-  <Navbar setMobileOpen={setMobileOpen}/>
+      <div
+  className={`
+    flex-1
+    flex
+    flex-col
+    transition-all
+    ${collapsed ? "md:ml-20" : "md:ml-64"}
+  `}
+>
+  <Navbar setMobileOpen={setMobileOpen} collapsed={collapsed}/>
 
-     <main className="flex-1 overflow-x-hidden overflow-y-auto">
+   
+  <main className="flex-1 overflow-y-auto">
         {children}
       </main>
       </div>

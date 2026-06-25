@@ -27,7 +27,7 @@ export default function AdminHomeView({
   handleDelete,
 }) {
   return (
-    <div className="max-w-4xl mx-auto">
+   <div className="w-full max-w-4xl mx-auto px-4">
       <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-xl">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-white">

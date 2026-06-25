@@ -45,9 +45,9 @@ export default function AdminAboutView({
   handleDelete
 }) {
   return (
-    <div className="max-w-md">
-      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">
+    <div className="w-full max-w-4xl mx-auto px-4 ">
+      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 bg-[#0b0f14]">
+        <h2 className="text-2xl font-bold text-white mb-2 ">
           About Section
         </h2>
 

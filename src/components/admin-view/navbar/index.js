@@ -1,8 +1,21 @@
 "use client";
 
-export default function Navbar({ setMobileOpen,}) {
+export default function Navbar({ setMobileOpen, collapsed,}) {
   return (
-    <header className="w-full border-b border-zinc-800 bg-zinc-950 px-4 md:px-6">
+   <header
+ className="
+    sticky
+    top-0
+    z-40
+    w-full
+    border-b
+    border-zinc-800
+    bg-zinc-950
+    px-4
+    md:px-6
+    bg-[#0b0f14]
+  "
+>
    <div className="h-20 flex items-center justify-between">
    <div className="flex items-center gap-4 min-w-0">
   <button

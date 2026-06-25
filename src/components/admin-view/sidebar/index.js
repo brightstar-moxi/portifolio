@@ -71,7 +71,9 @@ export default function Sidebar({
     return (
  <aside
   className={`
-    fixed md:relative
+     fixed
+    left-0
+    top-0
     z-50
     h-screen
     bg-zinc-950
