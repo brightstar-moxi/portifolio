@@ -1,6 +1,8 @@
 "use client";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
+import AdminLayout from "@/components/admin-view/layout";
+import Dashboard from "@/components/admin-view/dashboard";
 
 
 import AdminAboutView from "@/components/admin-view/about";
@@ -66,6 +68,8 @@ export default function AdminView() {
     const projectData = useQuery(api.projects.get);
     const contactData = useQuery(api.contact.get);
 
+    const deleteProject = useMutation(api.projects.remove);
+    const deleteExperience = useMutation(api.experience.remove);
 
     const loginUser = useMutation(api.user.login);
     const createHome = useMutation(api.home.create);
@@ -83,7 +87,8 @@ export default function AdminView() {
     const createProject = useMutation(api.projects.create);
     const updateProject = useMutation(api.projects.update);
 
-    const [currentSelectedTab, setCurrentSelectedTab] = useState("home");
+    const [currentSelectedTab, setCurrentSelectedTab] =
+        useState("dashboard");
     const [homeViewFormData, setHomeViewFormData] = useState(initialHomeFormData);
     const [aboutViewFormData, setAboutViewFormData] =
         useState(initialAboutFormData);
@@ -113,6 +118,12 @@ export default function AdminView() {
     const [loginFormData, setLoginFormData] = useState(initialLoginFormData);
 
     const menuItems = [
+
+        {
+            id: "dashboard",
+            label: "Dashboard",
+            component: <Dashboard />,
+        },
         {
             id: "home",
             label: "Home",
@@ -144,6 +155,8 @@ export default function AdminView() {
                     handleSaveData={handleSaveData}
                     setFormData={setExperienceViewFormData}
                     data={allData?.experience}
+                    handleEdit={handleEditExperience}
+                    handleDelete={handleDeleteExperience}
                 />
             ),
         },
@@ -163,12 +176,16 @@ export default function AdminView() {
             id: "project",
             label: "Project",
             component: (
+
                 <AdminProjectView
                     formData={projectViewFormData}
                     handleSaveData={handleSaveData}
                     setFormData={setProjectViewFormData}
                     data={allData?.project}
+                    handleEdit={handleEditProject}
+                    handleDelete={handleDeleteProject}
                 />
+
             ),
         },
         {
@@ -234,6 +251,54 @@ export default function AdminView() {
     //     }
     // }
 
+
+    //experience delete
+    async function handleDeleteExperience(id) {
+        try {
+            await deleteExperience({ id });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    //experience edit
+    function handleEditExperience(item) {
+        setExperienceViewFormData({
+            _id: item._id,
+            position: item.position,
+            company: item.company,
+            duration: item.duration,
+            location: item.location,
+            jobprofile: item.jobprofile,
+        });
+
+        setUpdate(true);
+    }
+
+    //project delete
+
+    async function handleDeleteProject(id) {
+        try {
+            await deleteProject({ id });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    //project edit
+    function handleEditProject(item) {
+        setProjectViewFormData({
+            _id: item._id,
+            name: item.name,
+            website: item.website,
+            technologies: item.technologies,
+            github: item.github,
+        });
+
+        setUpdate(true);
+    }
+
+    //
     async function handleSaveData() {
         try {
             switch (currentSelectedTab) {
@@ -256,12 +321,22 @@ export default function AdminView() {
                     break;
 
                 case "experience":
-                    if (update) {
-                        await updateExperience(experienceViewFormData);
-                    } else {
-                        const { id, ...experienceData } = experienceViewFormData;
-                        await createExperience(experienceData);
-                    }
+                    update
+                        ? await updateExperience({
+                            id: experienceViewFormData._id,
+                            position: experienceViewFormData.position,
+                            company: experienceViewFormData.company,
+                            duration: experienceViewFormData.duration,
+                            location: experienceViewFormData.location,
+                            jobprofile: experienceViewFormData.jobprofile,
+                        })
+                        : await createExperience({
+                            position: experienceViewFormData.position,
+                            company: experienceViewFormData.company,
+                            duration: experienceViewFormData.duration,
+                            location: experienceViewFormData.location,
+                            jobprofile: experienceViewFormData.jobprofile,
+                        });
                     break;
                 case "education":
                     if (update) {
@@ -273,18 +348,24 @@ export default function AdminView() {
                     break;
 
                 case "project":
-                    if (update) {
-                        await updateProject(projectViewFormData);
-                    } else {
-                        const { id, ...projectData } = projectViewFormData;
-                        await createProject(projectData);
-                    }
-                    break;
-
-                default:
+                    update
+                        ? await updateProject({
+                            id: projectViewFormData._id,
+                            name: projectViewFormData.name,
+                            website: projectViewFormData.website,
+                            technologies: projectViewFormData.technologies,
+                            github: projectViewFormData.github,
+                        })
+                        : await createProject({
+                            name: projectViewFormData.name,
+                            website: projectViewFormData.website,
+                            technologies: projectViewFormData.technologies,
+                            github: projectViewFormData.github,
+                        });
                     break;
             }
 
+            setUpdate(false);
             resetFormDatas();
         } catch (error) {
             console.error(error);
@@ -434,38 +515,23 @@ export default function AdminView() {
             />
         );
 
+
     return (
-        <div className="border-b border-[#fff]">
-            <nav className="-mb-0.5 flex justify-center spcae-x-6" role="tablist">
-                {menuItems.map((item) => (
-                    <button
-                        key={item.id}
-                        type="button"
-                        className="p-4 font-bold text-xl text-[#fff]"
-                        onClick={() => {
-                            setCurrentSelectedTab(item.id);
-                            resetFormDatas();
-                            setUpdate(false);
-                        }}
-                    >
-                        {item.label}
-                    </button>
-                ))}
-                <button
-                    onClick={() => {
-                        setAuthUser(false);
-                        sessionStorage.removeItem("authUser");
-                    }}
-                    className="p-4 font-bold text-xl text-[#fff]"
-                >
-                    Logout
-                </button>
-            </nav>
-            <div className="mt-10 p-10 text-[#000]">
+        <AdminLayout
+            currentSelectedTab={currentSelectedTab}
+            setCurrentSelectedTab={setCurrentSelectedTab}
+            resetFormDatas={resetFormDatas}
+            setUpdate={setUpdate}
+            setAuthUser={setAuthUser}
+        >
+            <div className="p-8">
                 {menuItems.map(
-                    (item) => (item.id === currentSelectedTab && item.component
-                    ))}
+                    (item) =>
+                        item.id === currentSelectedTab &&
+                        item.component
+                )}
             </div>
-        </div>
+        </AdminLayout>
     );
+
 }

@@ -1,65 +1,69 @@
-'use client'
+"use client";
+
 import FormControls from "../form-controls";
 
-
 const controls = [
-    {
-        name: "aboutme",
-        placeholder: "About Me",
-        type: "text",
-        label: "About Me",
-      },
-      {
-        name: "noofprojects",
-        placeholder: "No of projects",
-        type: "text",
-        label: "Enter no of projects",
-      },
-      {
-        name: "yearofexperience",
-        placeholder: "No of experience",
-        type: "text",
-        label: "Enter no of experience",
-      },
-      {
-        name: "noofclients",
-        placeholder: "No of clients",
-        type: "text",
-        label: "Enter no of clients",
-      },
-      {
-        name: "skills",
-        placeholder: "skills",
-        type: "text",
-        label: "Skills",
-      },
-    ];
-export default function AdminAboutView({ formData, setFormData, handleSaveData,data }){
-    console.log(formData);
-    return (
-        <div className="md:w-2/5 mx-auto">
-            <div className="bg-[#ffffff] shadow-md rounded px-8 pt-6 pb-8 mb-4">
-              <div className="mb-10">
-                {
-                  data && data.length ?
-                  data.map((item)=> <div className="flex flex-col gap-4 border p-4 border-green-600">
-                    <p>{item.aboutme}</p>
-                    <p>{item.noofprojects}</p>
-                    <p>{item.yearofexperience}</p>
-                    <p>{item.noofclients}</p>
-                    <p>{item.skills}</p>
-                  
-                  </div>)
-                  :null
-                }
-              </div>
-                <FormControls
-                    controls={controls}
-                    formData={formData}
-                    setFormData={setFormData}
-                />
-                <button onClick={()=> handleSaveData('about')} className=" mt-[10px] border border-green-600 p-4 font-bold  text-{16px}">Add Info</button>
-            </div>
-        </div>
-    )
+  {
+    name: "aboutme",
+    placeholder: "Tell us about yourself",
+    type: "textarea",
+    label: "About Me",
+  },
+  {
+    name: "noofprojects",
+    placeholder: "20",
+    type: "text",
+    label: "Projects Completed",
+  },
+  {
+    name: "yearofexperience",
+    placeholder: "5",
+    type: "text",
+    label: "Years of Experience",
+  },
+  {
+    name: "noofclients",
+    placeholder: "100+",
+    type: "text",
+    label: "Clients",
+  },
+  {
+    name: "skills",
+    placeholder: "React, Next.js, Node.js",
+    type: "text",
+    label: "Skills",
+  },
+];
+
+export default function AdminAboutView({
+  formData,
+  setFormData,
+  handleSaveData,
+}) {
+  return (
+    <div className="max-w-md">
+      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+        <h2 className="text-2xl font-bold text-white mb-2">
+          About Section
+        </h2>
+
+        <p className="text-zinc-500 text-sm mb-6">
+          About &gt; About Section
+        </p>
+
+        <FormControls
+          controls={controls}
+          formData={formData}
+          setFormData={setFormData}
+        />
+
+        <button
+          onClick={() => handleSaveData("about")}
+          className="mt-4 bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-all"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  );
 }
