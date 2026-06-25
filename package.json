@@ -14,7 +14,6 @@
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@mui/lab": "^5.0.0-alpha.153",
     "@mui/material": "^5.14.18",
-    
     "@popperjs/core": "^2.11.8",
     "convex": "^1.40.0",
     "framer-motion": "^10.16.5",

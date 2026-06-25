@@ -41,7 +41,7 @@ const education = useQuery(api.education.get) || [];
     ];
 
     return (
-  <div>
+  <div  className="w-full max-w-full overflow-x-hidden p-4 md:p-6">
     <h2 className="text-white text-3xl font-bold mb-2">
       Dashboard
     </h2>
@@ -51,7 +51,7 @@ const education = useQuery(api.education.get) || [];
     </p>
 
     {/* Stats Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+    <div cclassName="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
       {cards.map((card) => (
         <div
           key={card.title}
@@ -80,7 +80,7 @@ const education = useQuery(api.education.get) || [];
     <div className="grid lg:grid-cols-3 gap-6 mt-8">
 
       {/* Messages */}
-      <div className="lg:col-span-2 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+      <div className="bg-zinc-900 rounded-2xl border border-zinc-800 overflow-x-auto">
 
        <div className="flex justify-between items-center mb-4">
   <h3 className="text-white text-xl font-bold">
@@ -91,8 +91,8 @@ const education = useQuery(api.education.get) || [];
     {contacts.length}
   </span>
 </div>
-
-        <table className="w-full">
+<div className="overflow-x-auto">
+      <table className="w-full min-w-[700px]">
           <thead>
             <tr className="border-b border-zinc-800">
               <th className="text-left p-3 text-zinc-400">
@@ -140,7 +140,7 @@ const education = useQuery(api.education.get) || [];
           </tbody>
         </table>
       </div>
-
+</div>
       {/* Quick Actions */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
 

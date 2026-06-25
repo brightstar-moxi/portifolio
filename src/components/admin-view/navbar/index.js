@@ -1,27 +1,41 @@
 "use client";
 
-export default function Navbar() {
+export default function Navbar({ setMobileOpen,}) {
   return (
-    <div className="h-[70px] border-b border-zinc-800 bg-zinc-950 flex items-center justify-between px-8">
-      
-      <div>
-        <h1 className="text-white text-2xl font-bold">
-          Dashboard
-        </h1>
-      </div>
+    <header className="w-full border-b border-zinc-800 bg-zinc-950 px-4 md:px-6">
+   <div className="h-20 flex items-center justify-between">
+   <div className="flex items-center gap-4 min-w-0">
+  <button
+    onClick={() => setMobileOpen(true)}
+    className="md:hidden text-white text-2xl"
+  >
+    ☰
+  </button>
 
-      <div className="flex items-center gap-4">
-        <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold">
+  <div className="min-w-0">
+  <h1 className="text-white text-lg md:text-2xl font-bold truncate">
+      Admin Dashboard
+    </h1>
+
+<p className="hidden sm:block text-zinc-400 text-sm truncate">
+      Manage your portfolio
+    </p>
+  </div>
+</div>
+     <div className="flex items-center gap-3 flex-shrink-0">
+        <button className="relative">
+          <span className="text-2xl text-white">
+            🔔
+          </span>
+
+          <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-orange-500" />
+        </button>
+
+        <div className="h-11 w-11 rounded-full bg-orange-500 flex items-center justify-center font-bold text-white">
           A
         </div>
-
-        <div>
-          <p className="text-white font-semibold">
-            Admin
-          </p>
-        </div>
       </div>
-
-    </div>
+      </div>
+    </header>
   );
 }

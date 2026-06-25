@@ -1,29 +1,79 @@
 "use client";
-
+import {
+  FiGrid,
+  FiHome,
+  FiUser,
+  FiBriefcase,
+  FiBook,
+  FiFolder,
+  FiMail,
+} from "react-icons/fi";
 export default function Sidebar({
 
-    currentSelectedTab,
-    setCurrentSelectedTab,
-    resetFormDatas,
-    setUpdate,
-    setAuthUser,
-    collapsed,
-    setCollapsed,
+ 
+  currentSelectedTab,
+  setCurrentSelectedTab,
+  resetFormDatas,
+  setUpdate,
+  setAuthUser,
+  collapsed,
+  setCollapsed,
+  mobileOpen,
+  setMobileOpen,
 }) {
     const menuItems = [
-        { id: "dashboard", label: "Dashboard" },
-        { id: "home", label: "Home" },
-        { id: "about", label: "About" },
-        { id: "experience", label: "Experience" },
-        { id: "education", label: "Education" },
-        { id: "project", label: "Projects" },
-        { id: "contact", label: "Contact" },
+        // { id: "dashboard", label: "Dashboard" },
+        // { id: "home", label: "Home" },
+        // { id: "about", label: "About" },
+        // { id: "experience", label: "Experience" },
+        // { id: "education", label: "Education" },
+        // { id: "project", label: "Projects" },
+        // { id: "contact", label: "Contact" },
+       
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    icon: <FiGrid />,
+  },
+  {
+    id: "home",
+    label: "Home",
+    icon: <FiHome />,
+  },
+  {
+    id: "about",
+    label: "About",
+    icon: <FiUser />,
+  },
+  {
+    id: "experience",
+    label: "Experience",
+    icon: <FiBriefcase />,
+  },
+  {
+    id: "education",
+    label: "Education",
+    icon: <FiBook />,
+  },
+  {
+    id: "project",
+    label: "Projects",
+    icon: <FiFolder />,
+  },
+  {
+    id: "contact",
+    label: "Messages",
+    icon: <FiMail />,
+  },
+
     ];
 
     return (
-        <aside
-            className={`
-    min-h-screen
+ <aside
+  className={`
+    fixed md:relative
+    z-50
+    h-screen
     bg-zinc-950
     border-r
     border-zinc-800
@@ -31,10 +81,16 @@ export default function Sidebar({
     flex-col
     transition-all
     duration-300
-    ${collapsed ? "w-20" : "w-[260px]"}
-  `}
-        >
+bg-[#0b0f14]
+    ${
+      mobileOpen
+        ? "translate-x-0"
+        : "-translate-x-full md:translate-x-0"
+    }
 
+    ${collapsed ? "w-20" : "w-64"}
+  `}
+>
             <div className="flex items-center justify-between p-5 border-b border-zinc-800">
 
                 {!collapsed && (
@@ -49,7 +105,12 @@ export default function Sidebar({
                 >
                     ☰
                 </button>
-
+<button
+  onClick={() => setMobileOpen(false)}
+  className="md:hidden text-white"
+>
+  ✕
+</button>
             </div>
 
             {/* <div className="flex-1 p-4 text-orange-100">
@@ -102,7 +163,7 @@ export default function Sidebar({
       `}
                     >
 
-                        <span>◉</span>
+                        <span>{item.icon}</span>
 
                         {!collapsed && (
                             <span>{item.label}</span>

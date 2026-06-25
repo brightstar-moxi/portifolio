@@ -12,6 +12,7 @@ export default function AdminLayout({
   setAuthUser,
 }) {
     const [collapsed, setCollapsed] = useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <div className="flex min-h-screen bg-[#0b0f14] text-orange-100">
     <Sidebar
@@ -24,6 +25,9 @@ export default function AdminLayout({
     { id: "project", label: "Projects" },
     { id: "contact", label: "Contact" },
   ]}
+   mobileOpen={mobileOpen}
+  setMobileOpen={setMobileOpen}
+
   currentSelectedTab={currentSelectedTab}
   setCurrentSelectedTab={setCurrentSelectedTab}
   resetFormDatas={resetFormDatas}
@@ -33,9 +37,9 @@ export default function AdminLayout({
   setCollapsed={setCollapsed}
 />
       <div className="flex-1 flex flex-col">
-  <Navbar />
+  <Navbar setMobileOpen={setMobileOpen}/>
 
-      <main className="flex-1 overflow-y-auto">
+     <main className="flex-1 overflow-x-hidden overflow-y-auto">
         {children}
       </main>
       </div>

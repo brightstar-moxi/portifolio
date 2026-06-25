@@ -62,7 +62,8 @@ const initialLoginFormData = {
 };
 
 export default function AdminView() {
-    const [collapsed, setCollapsed] = useState(false);
+    // const [collapsed, setCollapsed] = useState(false);
+    
     const homeData = useQuery(api.home.get);
     const aboutData = useQuery(api.about.get);
     const experienceData = useQuery(api.experience.get);
