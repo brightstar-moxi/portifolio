@@ -13,7 +13,8 @@ body {
     font-family: 'Inter', sans-serif; /* Fallback to a generic sans-serif font */
   
   
-  background: #000
+  background: #000;
+  color:  #ffffff
 }
 p {
   color:  #ffffff
@@ -120,11 +121,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .bg{
-  stroke: #FF4500;
+  /* stroke: #FF4500; */
   opacity: 0.3;
 }
 .text{
-  stroke: #FF4500;
+  /* stroke: #FF4500; */
   opacity: 0.3;
 }
 ::-webkit-scrollbar {
@@ -135,7 +136,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: orangered;
+  /* background: orangered; */
   -webkit-border-radius: 1ex;
 }
 
