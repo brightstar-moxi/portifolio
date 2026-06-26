@@ -30,7 +30,7 @@ border
 border-zinc-700
 bg-zinc-950
 px-4
-py-3
+py-5
 text-white
 bg-[#0b0f14]
 

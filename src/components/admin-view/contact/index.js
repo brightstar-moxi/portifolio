@@ -1,6 +1,8 @@
 'use client'
-
-export default function AdminContactView({ data }) {
+import DataTable from "../data-table";
+export default function AdminContactView({ data,
+  handleEdit,
+  handleDelete }) {
     // console.log(data);
     return (
         <div className="flex flex-col gap-5 bg-[#FF4500]">
