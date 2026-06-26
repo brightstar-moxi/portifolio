@@ -12,9 +12,26 @@ export const create = mutation({
     name: v.string(),
     email: v.string(),
     message: v.string(),
+  status: v.optional(v.string()),
   },
+
   handler: async (ctx, args) => {
-    return await ctx.db.insert("contact", args);
+    return await ctx.db.insert("contact", {
+      ...args,
+      status: "New",
+    });
+  },
+});
+
+export const markAsRead = mutation({
+  args: {
+    id: v.id("contact"),
+  },
+
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.id, {
+      status: "Read",
+    });
   },
 });
 export const remove = mutation({

@@ -40,6 +40,7 @@ export default defineSchema({
     name: v.string(),
     email: v.string(),
     message: v.string(),
+    status: v.string(),
   }),
 
   users: defineTable({
