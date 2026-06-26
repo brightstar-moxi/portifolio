@@ -183,7 +183,15 @@ bg-[#0b0f14]
                         setAuthUser(false);
                         sessionStorage.removeItem("authUser");
                     }}
-                    className="w-full px-4 py-3 rounded-xl bg-red-500 text-orange-100"
+                    // className="w-full px-4 py-3 rounded-xl bg-red-500 text-orange-100"
+                    className="     flex
+        items-center
+        gap-3
+        w-full
+        px-5
+        py-4
+        text-left
+        transition-all"
                 >
                     Logout
                 </button>
