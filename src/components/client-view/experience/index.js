@@ -100,7 +100,7 @@
 //                               <p className="font-extrabold mt-2">
 //                                 {educationItem.degree}
 //                               </p>
-                             
+
 //                             </div>
 //                           </TimelineContent>
 //                         </TimelineItem>
@@ -162,7 +162,9 @@ export default function ClientExperienceView({
 
             </AnimationWrapper>
 
-            <div className="relative border-l border-zinc-800 ml-5">
+            <div className="relative ml-5">
+
+              <div className="absolute left-0 top-0 h-full w-[2px] bg-gradient-to-b from-orange-500 via-orange-400 to-transparent shadow-[0_0_20px_rgba(249,115,22,.5)]" />
 
               {experienceData?.map((item, index) => (
 
@@ -201,7 +203,7 @@ export default function ClientExperienceView({
 
                       </p>
 
-                      <p className="text-zinc-500 mt-5 leading-8">
+                      <p className="text-zinc-400 mt-6 leading-8">
 
                         {item.jobprofile}
 
@@ -251,29 +253,69 @@ export default function ClientExperienceView({
                 <AnimationWrapper key={item._id}>
 
                   <motion.div
+                    initial={{
+                      opacity: 0,
+                      x: -60,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      x: 0,
+                    }}
+                    viewport={{
+                      once: true,
+                    }}
+                    transition={{
+                      duration: 0.7,
+                      delay: index * 0.15,
+                    }}
                     whileHover={{
-                      x: 10,
+                      x: 12,
+                      scale: 1.02,
                     }}
                     className="relative mb-12"
                   >
 
-                    <div className="absolute -left-[31px] w-5 h-5 rounded-full bg-orange-500 border-4 border-zinc-950" />
+                    <div
+                      className="
+    absolute
+    -left-[31px]
+    w-5
+    h-5
+    rounded-full
+    bg-orange-500
+    border-4
+    border-[#09090B]
+    shadow-[0_0_25px_rgba(249,115,22,.9)]
+  "
+                    />
 
-                    <div className="ml-8 bg-zinc-900 border border-zinc-800 rounded-3xl p-7 hover:border-orange-500 transition-all">
+                    <div cclassName="
+ml-8
+bg-white/5
+backdrop-blur-xl
+border
+border-white/10
+rounded-3xl
+p-7
+hover:border-orange-500
+hover:shadow-[0_0_35px_rgba(249,115,22,.18)]
+transition-all
+duration-500
+">
 
-                      <span className="text-orange-500 font-semibold">
+                      <span className="text-orange-400 text-sm tracking-widest uppercase font-semibold">
 
                         {item.year}
 
                       </span>
 
-                      <h3 className="text-2xl font-bold text-white mt-3">
+                      <h3 className="text-3xl font-bold text-white mt-3">
 
                         {item.degree}
 
                       </h3>
 
-                      <p className="text-zinc-400 mt-2">
+                      <p className="text-zinc-500 mt-2">
 
                         {item.college}
 

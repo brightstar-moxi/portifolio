@@ -304,7 +304,7 @@ export default function ClientContactView() {
                     name: e.target.value,
                   })
                 }
-                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white focus:border-orange-500 outline-none"
+                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white focus:border-orange-500 outline-none bg-[#09090B]"
               />
 
               <input
@@ -317,7 +317,7 @@ export default function ClientContactView() {
                     email: e.target.value,
                   })
                 }
-                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white focus:border-orange-500 outline-none"
+                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white focus:border-orange-500 outline-none bg-[#09090B]"
               />
 
               <textarea
@@ -330,7 +330,7 @@ export default function ClientContactView() {
                     message: e.target.value,
                   })
                 }
-                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white resize-none focus:border-orange-500 outline-none"
+                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white resize-none focus:border-orange-500 outline-none bg-[#09090B]" 
               />
 
               {showSuccessMessage && (

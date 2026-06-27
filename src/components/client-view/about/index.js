@@ -140,209 +140,255 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import aboutMeImage from "../../../assets/pppp-removebg-preview.png";
 import AnimationWrapper from "../animation-wrapper";
+import CountUp from "react-countup";
 
 export default function ClientAboutView({ data }) {
-  const stats = [
-    {
-      title: "Clients",
-      value: data?.noofclients || "0",
-    },
-    {
-      title: "Projects",
-      value: data?.noofprojects || "0",
-    },
-    {
-      title: "Experience",
-      value: data?.yearofexperience || "0",
-    },
-  ];
+    const stats = [
+        {
+            title: "Clients",
+            value: data?.noofclients || "0",
+        },
+        {
+            title: "Projects",
+            value: data?.noofprojects || "0",
+        },
+        {
+            title: "Experience",
+            value: data?.yearofexperience || "0",
+        },
+    ];
 
-  const skills =
-    data?.skills?.split(",").map((item) => item.trim()) || [];
+    const skills =
+        data?.skills?.split(",").map((item) => item.trim()) || [];
 
-  return (
-    <section
-      id="about"
-      className="relative py-28 overflow-hidden"
-    >
-      {/* Background */}
+    return (
+        <section
+            id="about"
+            className="relative py-28 overflow-hidden"
+        >
+            {/* Background */}
 
-      <div className="absolute left-0 top-40 w-80 h-80 bg-orange-500/10 blur-[150px] rounded-full" />
+            <div className="absolute left-0 top-40 w-80 h-80 bg-orange-500/10 blur-[150px] rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-        {/* Header */}
+                {/* Header */}
 
-        <AnimationWrapper>
+                <AnimationWrapper>
 
-          <div className="text-center max-w-3xl mx-auto mb-20">
+                    <div className="text-center max-w-3xl mx-auto mb-20">
 
-            <span className="inline-flex px-5 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400">
+                        <span className="inline-flex px-5 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400">
 
-              About Me
+                            About Me
 
-            </span>
+                        </span>
 
-            <h2 className="mt-6 text-4xl md:text-5xl font-bold text-white">
+                        <h2 className="mt-6 text-4xl md:text-5xl font-bold text-white">
 
-              Why Companies Love
-              <span className="text-orange-500">
-                {" "}Working With Me
-              </span>
+                            Why Companies Love
+                            <span className="text-orange-500">
+                                {" "}Working With Me
+                            </span>
 
-            </h2>
+                        </h2>
 
-            <p className="mt-6 text-zinc-400 leading-8">
+                        <p className="mt-6 text-zinc-400 leading-8">
 
-              {data?.aboutme}
+                            {data?.aboutme}
 
-            </p>
+                        </p>
 
-          </div>
+                    </div>
 
-        </AnimationWrapper>
+                </AnimationWrapper>
 
-        {/* Main */}
+                {/* Main */}
 
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+                <div className="grid lg:grid-cols-2 gap-20 items-center">
 
-          {/* Image */}
+                    {/* Image */}
 
-          <AnimationWrapper>
+                    <AnimationWrapper>
 
-            <motion.div
-              animate={{
-                y: [0, -15, 0],
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 5,
-              }}
-              className="relative"
-            >
+                        <motion.div
+                            animate={{
+                                y: [0, -15, 0],
+                            }}
+                            transition={{
+                                repeat: Infinity,
+                                duration: 5,
+                            }}
+                            className="relative"
+                        >
 
-              <div className="absolute inset-0 bg-orange-500 blur-[120px] opacity-20 rounded-full" />
+                            <div className="absolute inset-0 bg-orange-500 blur-[120px] opacity-20 rounded-full" />
 
-              <div className="relative bg-zinc-900 border border-zinc-800 rounded-[35px] p-8">
+                            <div className="relative bg-zinc-900 border border-zinc-800 rounded-[35px] p-8">
 
-                <Image
-                  src={aboutMeImage}
-                  alt="About"
-                  width={550}
-                  height={650}
-                  className="rounded-2xl"
-                  priority
-                />
+                                <Image
+                                    src={aboutMeImage}
+                                    alt="About"
+                                    width={550}
+                                    height={650}
+                                    className="rounded-2xl"
+                                    priority
+                                />
 
-              </div>
+                            </div>
 
-            </motion.div>
+                        </motion.div>
 
-          </AnimationWrapper>
+                    </AnimationWrapper>
 
-          {/* Right */}
+                    {/* Right */}
 
-          <AnimationWrapper>
+                    <AnimationWrapper>
+
+                        <div>
+
+                            {/* Stats */}
+
+                            <div className="grid grid-cols-3 gap-5 mb-10">
+
+                                {stats.map((item) => (
+
+                                    <motion.div
+                                        whileHover={{
+                                            y: -8,
+                                        }}
+                                        key={item.title}
+                                        className="
+bg-white/5
+backdrop-blur-xl
+border
+border-white/10
+rounded-2xl
+p-6
+text-center
+shadow-[0_10px_35px_rgba(0,0,0,.35)]
+hover:border-orange-500
+hover:shadow-[0_0_30px_rgba(249,115,22,.25)]
+transition-all
+duration-500
+"
+                                    >
+
+                                        <h3 className="text-4xl font-black text-orange-500">
+
+                                            <CountUp
+                                                end={item.value}
+                                                duration={2.5}
+                                            />+
+                                        </h3>
+
+                                        <p className="text-zinc-400 mt-2">
+
+                                            {item.title}
+
+                                        </p>
 
-            <div>
+                                    </motion.div>
 
-              {/* Stats */}
+                                ))}
 
-              <div className="grid grid-cols-3 gap-5 mb-10">
+                            </div>
 
-                {stats.map((item) => (
+                            {/* Skills */}
 
-                  <motion.div
-                    whileHover={{
-                      y: -8,
-                    }}
-                    key={item.title}
-                    className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 text-center"
-                  >
+                            <h3 className="text-2xl font-bold text-white mb-6">
 
-                    <h3 className="text-4xl font-black text-orange-500">
+                                Technical Skills
 
-                      {item.value}+
+                            </h3>
 
-                    </h3>
+                            <div className="flex flex-wrap gap-4">
 
-                    <p className="text-zinc-400 mt-2">
+                                {skills.map((skill, index) => (
 
-                      {item.title}
+                                    <motion.div
+                                        key={index}
+                                        initial={{
+                                            opacity: 0,
+                                            y: 20
+                                        }}
+                                        whileInView={{
+                                            opacity: 1,
+                                            y: 0
+                                        }}
+                                        transition={{
+                                            delay: index * 0.08,
+                                            duration: .45
+                                        }}
+                                        whileHover={{
+                                            scale: 1.08,
+                                            y: -5
+                                        }}
+                                        viewport={{
+                                            once: true
+                                        }}
+                                        whileTap={{
+                                            scale: .95,
+                                        }}
+                                        className="
+px-6
+py-3
+rounded-xl
+bg-white/5
+backdrop-blur-xl
+border
+border-white/10
+text-zinc-300
+hover:border-orange-500
+hover:text-white
+hover:shadow-[0_0_20px_rgba(249,115,22,.25)]
+transition-all
+duration-300
+"
+                                    >
 
-                    </p>
+                                        {skill}
 
-                  </motion.div>
+                                    </motion.div>
 
-                ))}
+                                ))}
 
-              </div>
+                            </div>
 
-              {/* Skills */}
+                            {/* Bottom Card */}
 
-              <h3 className="text-2xl font-bold text-white mb-6">
+                            <motion.div
+                                whileHover={{
+                                    y: -5,
+                                }}
+                                className="mt-12 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-8"
+                            >
 
-                Technical Skills
+                                <h3 className="text-2xl font-bold text-white">
 
-              </h3>
+                                    Building Scalable Digital Experiences
 
-              <div className="flex flex-wrap gap-4">
+                                </h3>
 
-                {skills.map((skill, index) => (
+                                <p className="mt-4 text-orange-100 leading-8">
 
-                  <motion.div
-                    key={index}
-                    whileHover={{
-                      scale: 1.08,
-                    }}
-                    whileTap={{
-                      scale: .95,
-                    }}
-                    className="px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-orange-500 hover:text-white transition"
-                  >
+                                    I specialize in developing modern, responsive, and
+                                    high-performance web applications using React,
+                                    Next.js, Node.js, Express, MongoDB, Convex, and
+                                    Tailwind CSS while delivering exceptional user
+                                    experiences.
 
-                    {skill}
+                                </p>
 
-                  </motion.div>
+                            </motion.div>
 
-                ))}
+                        </div>
 
-              </div>
+                    </AnimationWrapper>
 
-              {/* Bottom Card */}
-
-              <motion.div
-                whileHover={{
-                  y: -5,
-                }}
-                className="mt-12 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-8"
-              >
-
-                <h3 className="text-2xl font-bold text-white">
-
-                  Building Scalable Digital Experiences
-
-                </h3>
-
-                <p className="mt-4 text-orange-100 leading-8">
-
-                  I specialize in developing modern, responsive, and
-                  high-performance web applications using React,
-                  Next.js, Node.js, Express, MongoDB, Convex, and
-                  Tailwind CSS while delivering exceptional user
-                  experiences.
-
-                </p>
-
-              </motion.div>
+                </div>
 
             </div>
-
-          </AnimationWrapper>
-
-        </div>
-
-      </div>
-    </section>
-  );
+        </section>
+    );
 }

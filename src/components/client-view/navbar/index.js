@@ -105,6 +105,8 @@
 import { useEffect, useState } from "react";
 import { Link as LinkScroll, scroller } from "react-scroll";
 import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const menuItems = [
   { id: "home", label: "Home" },
@@ -127,7 +129,35 @@ export default function Navbar() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+const buttonRef = useRef(null);
 
+const x = useMotionValue(0);
+const y = useMotionValue(0);
+
+const springX = useSpring(x, {
+  stiffness: 180,
+  damping: 15,
+});
+
+const springY = useSpring(y, {
+  stiffness: 180,
+  damping: 15,
+});
+
+const handleMouseMove = (e) => {
+  const rect = buttonRef.current.getBoundingClientRect();
+
+  const offsetX = e.clientX - rect.left - rect.width / 2;
+  const offsetY = e.clientY - rect.top - rect.height / 2;
+
+  x.set(offsetX * 0.25);
+  y.set(offsetY * 0.25);
+};
+
+const handleMouseLeave = () => {
+  x.set(0);
+  y.set(0);
+};
   return (
     <>
       <header
@@ -183,7 +213,7 @@ export default function Navbar() {
 
           <div className="hidden lg:block">
 
-            <button
+            {/* <button
               onClick={() =>
                 scroller.scrollTo("contact", {
                   smooth: true,
@@ -194,8 +224,40 @@ export default function Navbar() {
               className="px-6 py-3 rounded-xl border border-orange-500 text-white hover:bg-orange-500 transition-all duration-300"
             >
               Contact Me
-            </button>
-
+            </button> */}
+<motion.button
+  ref={buttonRef}
+  style={{
+    x: springX,
+    y: springY,
+  }}
+  onMouseMove={handleMouseMove}
+  onMouseLeave={handleMouseLeave}
+  onClick={() =>
+    scroller.scrollTo("contact", {
+      duration: 1200,
+      smooth: true,
+    })
+  }
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  className="
+    py-3
+    px-7
+    rounded-xl
+    border
+    border-orange-500
+    
+    text-white
+    font-semibold
+    shadow-[0_0_25px_rgba(249,115,22,.35)]
+    hover:shadow-[0_0_45px_rgba(249,115,22,.6)]
+    transition-all
+     text-white hover:bg-orange-500 
+  "
+>
+  Contact Me
+</motion.button>
           </div>
 
           {/* Mobile */}
