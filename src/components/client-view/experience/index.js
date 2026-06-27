@@ -119,6 +119,7 @@
 
 import { motion } from "framer-motion";
 import AnimationWrapper from "../animation-wrapper";
+// import { FaArrowRight } from "react-icons/fa";
 
 export default function ClientExperienceView({
   experienceData,
@@ -248,7 +249,7 @@ export default function ClientExperienceView({
 
             <div className="relative border-l border-zinc-800 ml-5">
 
-              {educationData?.map((item) => (
+              {educationData?.map((item, index) => (
 
                 <AnimationWrapper key={item._id}>
 
@@ -289,7 +290,7 @@ export default function ClientExperienceView({
   "
                     />
 
-                    <div cclassName="
+                    <div className="
 ml-8
 bg-white/5
 backdrop-blur-xl

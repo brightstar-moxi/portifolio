@@ -45,7 +45,7 @@
 //               style={{ pathLength: scrollXProgress }}
 //             />
 //           </svg>
-                  
+
 //                 </div>
 //             </AnimationWapper>
 //             <AnimationWapper>
@@ -74,7 +74,7 @@
 //                                     ))
 //                                 }
 //                             </div>
-                          
+
 //                                 </div>
 //                              </div>
 //                              </div>
@@ -106,166 +106,269 @@ import { motion } from "framer-motion";
 import AnimationWrapper from "../animation-wrapper";
 import { useRouter } from "next/navigation";
 import {
-  FaGithub,
-  FaExternalLinkAlt,
-  FaCode,
+    FaGithub,
+    FaExternalLinkAlt,
+    FaCode,
+    FaArrowRight
 } from "react-icons/fa";
 
 export default function ClientProjectView({ data }) {
-  const router = useRouter();
+    const router = useRouter();
 
-  return (
-    <section
-      id="project"
-      className="relative py-28 overflow-hidden"
-    >
-      {/* Background */}
+    return (
+        <section
+            id="project"
+            className="relative py-28 overflow-hidden"
+        >
+            {/* Background */}
 
-      <div className="absolute left-0 bottom-0 w-96 h-96 bg-orange-500/10 blur-[180px] rounded-full" />
+            <div className="absolute left-0 bottom-0 w-96 h-96 bg-orange-500/10 blur-[180px] rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-        {/* Header */}
+                {/* Header */}
 
-        <AnimationWrapper>
+                <AnimationWrapper>
 
-          <div className="text-center max-w-3xl mx-auto mb-20">
+                    <div className="text-center max-w-3xl mx-auto mb-20">
 
-            <span className="inline-flex px-5 py-2 rounded-full border border-orange-500/20 bg-orange-500/10 text-orange-400">
-              Portfolio
-            </span>
-
-            <h2 className="mt-6 text-5xl font-bold text-white">
-
-              Featured
-              <span className="text-orange-500">
-                {" "}Projects
-              </span>
-
-            </h2>
-
-            <p className="text-zinc-400 mt-6 leading-8">
-
-              A collection of modern, scalable and responsive
-              applications built with today's best technologies.
-
-            </p>
-
-          </div>
-
-        </AnimationWrapper>
-
-        {/* Projects */}
-
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-
-          {data?.map((item) => (
-
-            <AnimationWrapper key={item._id}>
-
-              <motion.div
-                whileHover={{
-                  y: -12,
-                }}
-                transition={{
-                  duration: .3,
-                }}
-                className="group bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:border-orange-500 transition-all"
-              >
-
-                {/* Thumbnail */}
-
-                <div className="relative h-56 bg-gradient-to-br from-orange-500/20 via-zinc-900 to-zinc-900 flex items-center justify-center">
-
-                  {item.image ? (
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                    />
-                  ) : (
-                    <FaCode
-                      className="text-orange-500"
-                      size={80}
-                    />
-                  )}
-
-                </div>
-
-                {/* Body */}
-
-                <div className="p-7">
-
-                  <span className="text-orange-500 text-sm">
-
-                    {new Date(
-                      item._creationTime
-                    ).toLocaleDateString()}
-
-                  </span>
-
-                  <h3 className="text-2xl font-bold text-white mt-3">
-
-                    {item.name}
-
-                  </h3>
-
-                  <div className="flex flex-wrap gap-2 mt-6">
-
-                    {item.technologies
-                      ?.split(",")
-                      .map((tech, index) => (
-
-                        <span
-                          key={index}
-                          className="px-4 py-2 rounded-full bg-zinc-800 text-zinc-300 text-sm"
-                        >
-                          {tech.trim()}
+                        <span className="inline-flex px-5 py-2 rounded-full border border-orange-500/20 bg-orange-500/10 text-orange-400">
+                            Portfolio
                         </span>
 
-                      ))}
+                        <h2 className="mt-6 text-5xl font-bold text-white">
 
-                  </div>
+                            Featured
+                            <span className="text-orange-500">
+                                {" "}Projects
+                            </span>
 
-                  {/* Buttons */}
+                        </h2>
 
-                  <div className="flex gap-4 mt-8">
+                        <p className="text-zinc-400 mt-6 leading-8">
 
-                    <button
-                      onClick={() =>
-                        router.push(item.website)
-                      }
-                      className="flex-1 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl transition"
-                    >
-                      <FaExternalLinkAlt />
+                            A collection of modern, scalable and responsive
+                            applications built with today's best technologies.
 
-                      Live Demo
-                    </button>
+                        </p>
 
-                    <button
-                      onClick={() =>
-                        router.push(item.github)
-                      }
-                      className="flex-1 flex items-center justify-center gap-2 border border-zinc-700 hover:border-orange-500 text-white py-3 rounded-xl transition"
-                    >
-                      <FaGithub />
+                    </div>
 
-                      GitHub
-                    </button>
+                </AnimationWrapper>
 
-                  </div>
+                {/* Projects */}
+
+                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+                    {data?.map((item) => (
+
+                        <AnimationWrapper key={item._id}>
+
+                            <motion.div
+                                whileHover={{
+                                    y: -15,
+                                    rotateX: 6,
+                                    rotateY: -6,
+                                    scale: 1.03,
+                                }}
+                                transition={{
+                                    duration: .3,
+                                }}
+                                className="group relative bg-white/5 backdrop-blur-xl border
+border-white/10
+rounded-3xl
+overflow-hidden
+hover:border-orange-500
+hover:shadow-[0_0_40px_rgba(249,115,22,.18)]
+transition-all
+duration-500
+"
+                            >
+
+                                {/* Thumbnail */}
+                                <div className="relative h-56 overflow-hidden bg-gradient-to-br from-orange-500/20 via-zinc-900 to-zinc-900 flex items-center justify-center">
+
+                                    {item.image ? (
+                                        <img
+                                            src={item.image}
+                                            alt={item.name}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                        />
+                                    ) : (
+                                        <FaCode
+                                            className="text-orange-500"
+                                            size={80}
+                                        />
+                                    )}
+
+                                    {/* Overlay */}
+                                    <div
+                                        className="
+      absolute
+      inset-0
+      bg-black/70
+      flex
+      items-center
+      justify-center
+      opacity-0
+      group-hover:opacity-100
+      transition
+      duration-300
+    "
+                                    >
+                                        <span className="text-white text-lg font-semibold">
+                                            View Project →
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                {/* Body */}
+
+                                <div className="p-7">
+
+                                    <span className="text-orange-500 text-sm">
+
+                                        {new Date(
+                                            item._creationTime
+                                        ).toLocaleDateString()}
+
+                                    </span>
+
+                                    <h3 className="text-2xl font-bold text-white mt-3">
+
+                                        {item.name}
+
+                                    </h3>
+
+                                    <div className="flex flex-wrap gap-2 mt-6">
+
+                                        {item.technologies
+                                            ?.split(",")
+                                            .map((tech, index) => (
+
+                                                <motion.span
+                                                    whileHover={{
+                                                        y: -5,
+                                                        scale: 1.08,
+                                                    }}
+                                                    key={index}
+                                                    className="
+px-4
+py-2
+rounded-full
+bg-white/5
+backdrop-blur-xl
+border
+border-white/10
+text-zinc-300
+text-sm
+hover:border-orange-500
+transition-all
+"
+                                                >
+                                                    {tech.trim()}
+                                                </motion.span>
+
+                                            ))}
+
+                                    </div>
+
+                                    {/* Buttons */}
+
+                                    <div className="flex gap-4 mt-8">
+
+                                        {/* <button
+                                            onClick={() =>
+                                                router.push(item.website)
+                                            }
+                                            className="flex-1 flex items-center justify-center gap-2 bg-orange-500
+hover:scale-105
+hover:shadow-[0_0_30px_rgba(249,115,22,.5)]
+transition-all text-white py-3 rounded-xl "
+                                        >
+                                            <FaExternalLinkAlt />
+
+                                            Live Demo
+                                        </button> */}
+
+
+                                        <motion.button
+  whileHover={{
+    scale: 1.04,
+  }}
+  whileTap={{
+    scale: 0.96,
+  }}
+  onClick={() => router.push(item.website)}
+  className="flex-1 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl transition-all hover:shadow-[0_0_25px_rgba(249,115,22,.5)]"
+>
+  Live Demo
+
+  <motion.span
+    whileHover={{
+      x: 6,
+    }}
+    transition={{
+      type: "spring",
+      stiffness: 300,
+    }}
+  >
+    <FaArrowRight />
+  </motion.span>
+</motion.button>
+
+                                        {/* <button
+                                            onClick={() =>
+                                                router.push(item.github)
+                                            }
+                                            className="flex-1 flex items-center justify-center gap-2 border border-white/10
+bg-white/5
+backdrop-blur-xl
+hover:border-orange-500
+hover:scale-105
+transition-all  text-white py-3 rounded-xl"
+                                        >
+                                            <FaGithub />
+
+                                            GitHub
+                                        </button> */}
+                                        <motion.button
+                                            whileHover={{
+                                                scale: 1.04,
+                                            }}
+                                            whileTap={{
+                                                scale: 0.96,
+                                            }}
+                                            onClick={() => router.push(item.github)}
+                                            className="flex-1 flex items-center justify-center gap-2 border border-white/10 bg-white/5 backdrop-blur-xl hover:border-orange-500 text-white py-3 rounded-xl transition-all"
+                                        >
+                                            <motion.span
+                                                whileHover={{
+                                                    rotate: 360,
+                                                }}
+                                                transition={{
+                                                    duration: 0.5,
+                                                }}
+                                            >
+                                                <FaGithub />
+                                            </motion.span>
+
+                                            GitHub
+                                        </motion.button>
+                                    </div>
+
+                                </div>
+
+                            </motion.div>
+
+                        </AnimationWrapper>
+
+                    ))}
 
                 </div>
 
-              </motion.div>
-
-            </AnimationWrapper>
-
-          ))}
-
-        </div>
-
-      </div>
-    </section>
-  );
+            </div>
+        </section>
+    );
 }

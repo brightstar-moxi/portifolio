@@ -142,7 +142,7 @@
 //                                 showSuccessMessage && <p className="text-[14px] font-bold my-[8px] text-[#ffffff]">Your Message Is Succesfilly Delivered !</p>
 //                             }
 //                             <div className="p-2 w-full">
-                               
+
 //                                 <button
 //                                  disabled={!isVaildForm()}
 //                                 onClick={handleSendMessage} className="disabled:opacity-50 py-3 lg:py-4 px-12 lg:px-16 text-[#fff] font-semibold rounded-lg text-2xl tracking-widest bg-[#FF4500] outline-none">Send Message</button>
@@ -168,196 +168,321 @@ import { api } from "../../../../convex/_generated/api";
 import AnimationWapper from "../animation-wrapper";
 
 const initialFormData = {
-  name: "",
-  email: "",
-  message: "",
+    name: "",
+    email: "",
+    message: "",
 };
 
 export default function ClientContactView() {
-  const createContact = useMutation(api.contact.create);
+    const createContact = useMutation(api.contact.create);
 
-  const [formData, setFormData] = useState(initialFormData);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [formData, setFormData] = useState(initialFormData);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  async function handleSendMessage() {
-    try {
-      await createContact({
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-      });
+    async function handleSendMessage() {
+        try {
+            await createContact({
+                name: formData.name,
+                email: formData.email,
+                message: formData.message,
+            });
 
-      setFormData(initialFormData);
-      setShowSuccessMessage(true);
-    } catch (err) {
-      console.log(err);
+            setFormData(initialFormData);
+            setShowSuccessMessage(true);
+        } catch (err) {
+            console.log(err);
+        }
     }
-  }
 
-  useEffect(() => {
-    if (showSuccessMessage) {
-      const timer = setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 3000);
+    useEffect(() => {
+        if (showSuccessMessage) {
+            const timer = setTimeout(() => {
+                setShowSuccessMessage(false);
+            }, 3000);
 
-      return () => clearTimeout(timer);
-    }
-  }, [showSuccessMessage]);
+            return () => clearTimeout(timer);
+        }
+    }, [showSuccessMessage]);
 
-  const isValidForm =
-    formData.name &&
-    formData.email &&
-    formData.message;
+    const isValidForm =
+        formData.name &&
+        formData.email &&
+        formData.message;
 
-  return (
-    <section
-      id="contact"
-      className="max-w-7xl mx-auto px-6 lg:px-12 py-28"
-    >
-      <AnimationWapper>
-        <div className="text-center mb-16">
-
-          <span className="text-orange-500 font-semibold tracking-[0.3em] uppercase">
-            Contact
-          </span>
-
-          <h2 className="text-4xl lg:text-6xl font-bold text-white mt-4">
-            Let's Build Something Great
-          </h2>
-
-          <p className="text-zinc-400 max-w-2xl mx-auto mt-6">
-            Have a project, freelance opportunity, or full-time role?
-            Send me a message and I'll get back to you as soon as possible.
-          </p>
-
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: .8 }}
-          viewport={{ once: true }}
-          className="grid lg:grid-cols-2 gap-12"
+    return (
+        <section
+            id="contact"
+            className="max-w-7xl mx-auto px-6 lg:px-12 py-28"
         >
+            <AnimationWapper>
+                <div className="text-center mb-16">
 
-          {/* Left Side */}
+                    <span className="text-orange-500 font-semibold tracking-[0.3em] uppercase">
+                        Contact
+                    </span>
 
-          <div className="space-y-8">
+                    <h2 className="text-4xl lg:text-6xl font-bold text-white mt-4">
+                        Let's Build Something Great
+                    </h2>
 
-            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                    <p className="text-zinc-400 max-w-2xl mx-auto mt-6">
+                        Have a project, freelance opportunity, or full-time role?
+                        Send me a message and I'll get back to you as soon as possible.
+                    </p>
 
-              <h3 className="text-2xl font-bold text-white mb-6">
-                Contact Information
-              </h3>
-
-              <div className="space-y-6">
-
-                <div>
-                  <p className="text-zinc-500">
-                    Email
-                  </p>
-
-                  <p className="text-white">
-                    brightstarmoxiz2@gmail.com
-                  </p>
                 </div>
 
-                <div>
-                  <p className="text-zinc-500">
-                    Location
-                  </p>
-
-                  <p className="text-white">
-                    Nigeria
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-zinc-500">
-                    Availability
-                  </p>
-
-                  <p className="text-green-400">
-                    Available for work
-                  </p>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* Right Side */}
-
-          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
-
-            <div className="space-y-6">
-
-              <input
-                type="text"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    name: e.target.value,
-                  })
-                }
-                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white focus:border-orange-500 outline-none bg-[#09090B]"
-              />
-
-              <input
-                type="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    email: e.target.value,
-                  })
-                }
-                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white focus:border-orange-500 outline-none bg-[#09090B]"
-              />
-
-              <textarea
-                rows={6}
-                placeholder="Tell me about your project..."
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    message: e.target.value,
-                  })
-                }
-                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white resize-none focus:border-orange-500 outline-none bg-[#09090B]" 
-              />
-
-              {showSuccessMessage && (
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="bg-green-500/20 border border-green-500 rounded-xl p-4 text-green-400"
+                    initial={{ opacity: 0, y: 80 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: .8 }}
+                    viewport={{ once: true }}
+                    className="grid lg:grid-cols-2 gap-12"
                 >
-                  Message sent successfully.
+
+                    {/* Left Side */}
+
+                    <div className="space-y-8">
+
+                        <div className="
+bg-white/5
+backdrop-blur-xl
+border
+border-white/10
+rounded-3xl
+p-8
+shadow-[0_0_40px_rgba(249,115,22,.08)]
+">
+
+                            <h3 className="text-2xl font-bold text-white mb-6">
+                                Contact Information
+                            </h3>
+
+                            <div className="space-y-6">
+
+                                <div>
+                                    <p className="text-zinc-500">
+                                        Email
+                                    </p>
+
+                                    <p className="text-white">
+                                        brightstarmoxiz2@gmail.com
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p className="text-zinc-500">
+                                        Location
+                                    </p>
+
+                                    <p className="text-white">
+                                        Nigeria
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p className="text-zinc-500">
+                                        Availability
+                                    </p>
+
+                                    <p className="text-green-400">
+                                        Available for work
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {/* Right Side */}
+
+                    <div className="
+bg-white/5
+backdrop-blur-xl
+border
+border-white/10
+rounded-3xl
+p-8
+shadow-[0_0_40px_rgba(249,115,22,.08)]
+">
+
+                        <div className="space-y-6">
+
+                            <motion.input
+                                whileFocus={{
+                                    scale: 1.02,
+                                }}
+                                transition={{
+                                    duration: .2,
+                                }}
+                                type="text"
+                                placeholder="Your Name"
+                                value={formData.name}
+                                onChange={(e) =>
+                                    setFormData({
+                                        ...formData,
+                                        name: e.target.value,
+                                    })
+                                }
+                                className="
+w-full
+rounded-xl
+bg-white/5
+backdrop-blur-xl
+border
+border-white/10
+px-5
+py-4
+text-white
+outline-none
+focus:border-orange-500
+focus:ring-2
+focus:ring-orange-500/20
+transition-all
+"
+                            />
+
+                            <motion.input
+                                whileFocus={{
+                                    scale: 1.02,
+                                }}
+                                transition={{
+                                    duration: .2,
+                                }}
+                                type="email"
+                                placeholder="Your Email"
+                                value={formData.email}
+                                onChange={(e) =>
+                                    setFormData({
+                                        ...formData,
+                                        email: e.target.value,
+                                    })
+                                }
+                                className="
+w-full
+rounded-xl
+bg-white/5
+backdrop-blur-xl
+border
+border-white/10
+px-5
+py-4
+text-white
+outline-none
+focus:border-orange-500
+focus:ring-2
+focus:ring-orange-500/20
+transition-all
+"
+                            />
+
+                            <motion.textarea
+                                whileFocus={{
+                                    scale: 1.02,
+                                }}
+                                transition={{
+                                    duration: .2,
+                                }}
+                                rows={6}
+                                placeholder="Tell me about your project..."
+                                value={formData.message}
+                                onChange={(e) =>
+                                    setFormData({
+                                        ...formData,
+                                        message: e.target.value,
+                                    })
+                                }
+                                className="
+w-full
+rounded-xl
+bg-white/5
+backdrop-blur-xl
+border
+border-white/10
+px-5
+py-4
+text-white
+outline-none
+focus:border-orange-500
+focus:ring-2
+focus:ring-orange-500/20
+transition-all
+"
+                            />
+
+                            {showSuccessMessage && (
+                                <motion.div
+                                    initial={{
+                                        opacity: 0,
+                                        y: 15,
+                                    }}
+
+                                    animate={{
+                                        opacity: 1,
+                                        y: 0,
+                                    }}
+
+                                    exit={{
+                                        opacity: 0,
+                                        y: -15,
+                                    }}
+                                    className="bg-green-500/20 border border-green-500 rounded-xl p-4 text-green-400"
+                                >
+                                    Message sent successfully.
+                                </motion.div>
+                            )}
+
+                           <motion.button
+whileHover={{
+  scale: 1.04,
+}}
+
+whileTap={{
+  scale: .96,
+}}
+                                disabled={!isValidForm}
+                                onClick={handleSendMessage}
+                                className="
+group
+relative
+overflow-hidden
+w-full
+bg-orange-500
+disabled:opacity-50
+text-white
+font-semibold
+py-4
+rounded-xl
+transition-all
+hover:shadow-[0_0_30px_rgba(249,115,22,.5)]
+"
+                            >
+                              <span className="flex items-center justify-center gap-3">
+  Send Message
+
+  <motion.span
+    animate={{
+      x: [0, 6, 0],
+    }}
+    transition={{
+      repeat: Infinity,
+      duration: 1.6,
+    }}
+  >
+    →
+  </motion.span>
+</span>
+                            </motion.button>
+
+                        </div>
+
+                    </div>
+
                 </motion.div>
-              )}
 
-              <button
-                disabled={!isValidForm}
-                onClick={handleSendMessage}
-                className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-semibold py-4 rounded-xl transition-all"
-              >
-                Send Message
-              </button>
-
-            </div>
-
-          </div>
-
-        </motion.div>
-
-      </AnimationWapper>
-    </section>
-  );
+            </AnimationWapper>
+        </section>
+    );
 }
