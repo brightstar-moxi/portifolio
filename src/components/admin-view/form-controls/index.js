@@ -32,7 +32,7 @@ bg-zinc-950
 px-4
 py-5
 text-white
-bg-[#0b0f14]
+
 
               focus:outline-none
               focus:border-orange-500
@@ -57,7 +57,7 @@ bg-[#0b0f14]
               rounded-lg
               px-4
               py-3
-             bg-[#0b0f14]
+             
               text-white
               focus:outline-none
               focus:border-orange-500

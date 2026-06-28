@@ -26,7 +26,7 @@ const unread = contacts.filter(
     bg-zinc-950
     px-4
     md:px-6
-    bg-[#0b0f14]
+    
   "
 >
    <div className="h-20 flex items-center justify-between">
@@ -37,6 +37,7 @@ const unread = contacts.filter(
   >
    <Menu size={24} />
   </button>
+  
 
   <div className="min-w-0">
   <h1 className="text-white text-lg md:text-2xl font-bold truncate">
@@ -48,7 +49,7 @@ const unread = contacts.filter(
     </p>
   </div>
 </div>
-<div className="hidden lg:flex flex-1 max-w-md mx-10">
+{/* <div className="hidden lg:flex flex-1 max-w-md mx-10">
   <div className="relative w-full">
 
     <Search
@@ -63,8 +64,8 @@ const unread = contacts.filter(
     />
 
   </div>
-</div>
-     <div className="flex items-center gap-3 flex-shrink-0">
+</div> */}
+     <div className="flex items-center gap-8 flex-shrink-0">
      <button className="relative">
   <Bell size={22} className="text-white" />
 

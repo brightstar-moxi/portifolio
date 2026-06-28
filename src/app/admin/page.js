@@ -14,7 +14,7 @@ import Login from "@/components/admin-view/login";
 import AdminProjectView from "@/components/admin-view/project";
 // import { addData, getData, login, updateData } from "@/services";
 import { useEffect, useState } from "react";
-import Sidebar from "@/components/admin-view/sidebar";
+
 
 const initialHomeFormData = {
     id: "",
@@ -626,11 +626,18 @@ export default function AdminView() {
                 setAuthUser={setAuthUser}
             >
                 <div className="p-8">
-                    {menuItems.map(
+                    {/* {menuItems.map(
                         (item) =>
                             item.id === currentSelectedTab &&
                             item.component
-                    )}
+                    )} */}
+                    {menuItems.map((item) =>
+  item.id === currentSelectedTab ? (
+    <div key={item.id}>
+      {item.component}
+    </div>
+  ) : null
+)}
                 </div>
             </AdminLayout>
         </>

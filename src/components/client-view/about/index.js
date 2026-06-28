@@ -138,7 +138,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import aboutMeImage from "../../../assets/pppp-removebg-preview.png";
+import aboutMeImage from "../../../assets/brightstar.png";
 import AnimationWrapper from "../animation-wrapper";
 import CountUp from "react-countup";
 
@@ -193,7 +193,7 @@ export default function ClientAboutView({ data }) {
 
                         </h2>
 
-                        <p className="mt-6 text-zinc-400 leading-8">
+                        <p className="mt-6 text-zinc-400 leading-8 text-justify">
 
                             {data?.aboutme}
 
@@ -249,7 +249,7 @@ export default function ClientAboutView({ data }) {
 
                             {/* Stats */}
 
-                            <div className="grid grid-cols-3 gap-5 mb-10">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
 
                                 {stats.map((item) => (
 
@@ -274,7 +274,7 @@ duration-500
 "
                                     >
 
-                                        <h3 className="text-4xl font-black text-orange-500">
+                                        <h3 className="text-3xl sm:text-4xl font-black text-orange-500">
 
                                             <CountUp
                                                 end={item.value}
@@ -282,7 +282,7 @@ duration-500
                                             />+
                                         </h3>
 
-                                        <p className="text-zinc-400 mt-2">
+                                       <p className="text-sm sm:text-base text-zinc-400 mt-2">
 
                                             {item.title}
 

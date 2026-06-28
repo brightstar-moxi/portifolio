@@ -174,14 +174,14 @@ const handleMouseLeave = () => {
           <div className="flex items-center gap-3 cursor-pointer">
 
             <div className="w-11 h-11 rounded-xl bg-orange-500 flex items-center justify-center font-bold text-xl text-white shadow-lg shadow-orange-500/30">
-              B
+              D
             </div>
 
-            <span className="text-white font-bold text-xl">
-              Bright
-              <span className="text-orange-500">star</span>
+            <span className="text-white  font-bold text-xl">
+             Dev. Moses
+             
             </span>
-
+ <span className="text-orange-500 font-bold text-xl"> Jojolola</span>
           </div>
 
           {/* Desktop Menu */}

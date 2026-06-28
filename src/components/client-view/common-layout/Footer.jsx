@@ -62,7 +62,7 @@ export default function Footer() {
             <div className="flex gap-4">
 
               <a
-                href="#"
+                href="https://github.com/brightstar-moxi/"
                 className="w-12 h-12 rounded-xl bg-zinc-900 hover:bg-orange-500 transition flex items-center justify-center"
               >
                 <FaGithub />
@@ -83,7 +83,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="mailto:your@email.com"
+                href="mailto:brightstartech11.com"
                 className="w-12 h-12 rounded-xl bg-zinc-900 hover:bg-orange-500 transition flex items-center justify-center"
               >
                 <FaEnvelope />

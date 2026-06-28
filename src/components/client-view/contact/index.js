@@ -166,6 +166,7 @@ import { motion } from "framer-motion";
 import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import AnimationWapper from "../animation-wrapper";
+import { FaWhatsapp } from "react-icons/fa";
 
 const initialFormData = {
     name: "",
@@ -178,9 +179,12 @@ export default function ClientContactView() {
 
     const [formData, setFormData] = useState(initialFormData);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     async function handleSendMessage() {
         try {
+            setLoading(true);
+
             await createContact({
                 name: formData.name,
                 email: formData.email,
@@ -191,9 +195,10 @@ export default function ClientContactView() {
             setShowSuccessMessage(true);
         } catch (err) {
             console.log(err);
+        } finally {
+            setLoading(false);
         }
     }
-
     useEffect(() => {
         if (showSuccessMessage) {
             const timer = setTimeout(() => {
@@ -279,7 +284,31 @@ shadow-[0_0_40px_rgba(249,115,22,.08)]
                                         Nigeria
                                     </p>
                                 </div>
+                                <div className="flex items-center justify-between">
 
+                                    <div>
+                                        <p className="text-zinc-500">
+                                            WhatsApp
+                                        </p>
+
+                                        <p className="text-white">
+                                            Chat with me
+                                        </p>
+                                    </div>
+
+                                    <a
+                                        href="https://wa.me/+2347025021586"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center hover:scale-110 transition"
+                                    >
+                                        <FaWhatsapp
+                                            size={24}
+                                            className="text-white"
+                                        />
+                                    </a>
+
+                                </div>
                                 <div>
                                     <p className="text-zinc-500">
                                         Availability
@@ -326,7 +355,7 @@ shadow-[0_0_40px_rgba(249,115,22,.08)]
                                         name: e.target.value,
                                     })
                                 }
-                                className="
+                                className="bg-[#0b0f14]
 w-full
 rounded-xl
 bg-white/5
@@ -360,7 +389,7 @@ transition-all
                                         email: e.target.value,
                                     })
                                 }
-                                className="
+                                className="bg-[#0b0f14]
 w-full
 rounded-xl
 bg-white/5
@@ -394,7 +423,7 @@ transition-all
                                         message: e.target.value,
                                     })
                                 }
-                                className="
+                                className="bg-[#0b0f14]
 w-full
 rounded-xl
 bg-white/5
@@ -434,48 +463,61 @@ transition-all
                                 </motion.div>
                             )}
 
-                           <motion.button
-whileHover={{
-  scale: 1.04,
-}}
-
-whileTap={{
-  scale: .96,
-}}
-                                disabled={!isValidForm}
+                            <motion.button
+                                whileHover={{
+                                    scale: loading ? 1 : 1.04,
+                                }}
+                                whileTap={{
+                                    scale: .96,
+                                }}
+                                disabled={!isValidForm || loading}
                                 onClick={handleSendMessage}
                                 className="
-group
-relative
-overflow-hidden
-w-full
-bg-orange-500
-disabled:opacity-50
-text-white
-font-semibold
-py-4
-rounded-xl
-transition-all
-hover:shadow-[0_0_30px_rgba(249,115,22,.5)]
-"
+    group
+    relative
+    overflow-hidden
+    w-full
+    bg-orange-500
+    disabled:opacity-60
+    disabled:cursor-not-allowed
+    text-white
+    font-semibold
+    py-4
+    rounded-xl
+    transition-all
+    hover:shadow-[0_0_30px_rgba(249,115,22,.5)]
+  "
                             >
-                              <span className="flex items-center justify-center gap-3">
-  Send Message
+                                <span className="flex items-center justify-center gap-3">
 
-  <motion.span
-    animate={{
-      x: [0, 6, 0],
-    }}
-    transition={{
-      repeat: Infinity,
-      duration: 1.6,
-    }}
-  >
-    →
-  </motion.span>
-</span>
+                                    {loading ? "Sending..." : "Send Message"}
+
+                                    {loading ? (
+                                        <motion.div
+                                            animate={{ rotate: 360 }}
+                                            transition={{
+                                                repeat: Infinity,
+                                                duration: 1,
+                                                ease: "linear",
+                                            }}
+                                            className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                                        />
+                                    ) : (
+                                        <motion.span
+                                            animate={{
+                                                x: [0, 6, 0],
+                                            }}
+                                            transition={{
+                                                repeat: Infinity,
+                                                duration: 1.6,
+                                            }}
+                                        >
+                                            →
+                                        </motion.span>
+                                    )}
+
+                                </span>
                             </motion.button>
-
                         </div>
 
                     </div>

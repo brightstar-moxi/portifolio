@@ -15,11 +15,11 @@ export default function Dashboard({
   setCurrentSelectedTab,
 }) {
     const home = useQuery(api.home.get) || [];
-    const about = useQuery(api.about.get) || [];
+    // const about = useQuery(api.about.get) || [];
     const experience = useQuery(api.experience.get) || [];
     const projects = useQuery(api.projects.get) || [];
     const contacts = useQuery(api.contact.get) || [];
-const education = useQuery(api.education.get) || [];
+// const education = useQuery(api.education.get) || [];
 
   const cards = [
   {

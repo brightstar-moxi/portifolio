@@ -14,7 +14,7 @@ export default function AdminLayout({
     const [collapsed, setCollapsed] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
   return (
-    <div className="flex min-h-screen bg-[#0b0f14] text-orange-100">
+    <div className="flex min-h-screen bg-[#0b0f14] ">
     <Sidebar
   menuItems={[
     { id: "dashboard", label: "Dashboard" },
@@ -48,7 +48,7 @@ export default function AdminLayout({
   <Navbar setMobileOpen={setMobileOpen} collapsed={collapsed}/>
 
    
-  <main className="flex-1 overflow-y-auto">
+  <main className="flex-1 overflow-auto">
         {children}
       </main>
       </div>

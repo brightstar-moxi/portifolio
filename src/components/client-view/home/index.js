@@ -190,7 +190,7 @@ const socialLinks = [
 
 export default function ClientHomeView({ data }) {
     const setVariants = useMemo(() => variants(), []);
-    const containerRef = useRef(null);
+    // const containerRef = useRef(null);
     const [rotate, setRotate] = useState({ x: 0, y: 0 });
 
     const handleMove = (e) => {
@@ -592,15 +592,15 @@ export default function ClientHomeView({ data }) {
                                     }}
                                     className="
       absolute
-      -left-16
-      top-12
+      -left-9
+      top-20
       rounded-2xl
       border
      
       bg-zinc-900/90
       backdrop-blur-xl
-      px-5
-      py-4
+      px-4
+      py-3
       shadow-xl
     "
                                 >
@@ -608,7 +608,7 @@ export default function ClientHomeView({ data }) {
                                         4+
                                     </h3>
 
-                                    <p className="text-sm text-zinc-400">
+                                    <p className="text-xs text-zinc-400">
                                         Years Experience
                                     </p>
                                 </motion.div>

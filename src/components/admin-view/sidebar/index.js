@@ -69,29 +69,47 @@ export default function Sidebar({
     ];
 
     return (
- <aside
-  className={`
-     fixed
-    left-0
-    top-0
-    z-50
-    h-screen
-    bg-zinc-950
-    border-r
-    border-zinc-800
-    flex
-    flex-col
-    transition-all
-    duration-300
-bg-[#0b0f14]
-    ${
-      mobileOpen
-        ? "translate-x-0"
-        : "-translate-x-full md:translate-x-0"
-    }
+//  <aside
+//   className={`
+//      fixed
+//     left-0
+//     top-0
+//     z-50
+//     h-screen
+//     bg-zinc-950
+//     border-r
+//     border-zinc-800
+//     flex
+//     flex-col
+//     transition-all
+//     duration-300
 
-    ${collapsed ? "w-20" : "w-64"}
-  `}
+//     ${
+//       mobileOpen
+//         ? "translate-x-0"
+//         : "-translate-x-full md:translate-x-0"
+//     }
+
+//     ${collapsed ? "w-20" : "w-64"}
+//   `}
+// >
+
+<aside
+  style={{
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: collapsed ? "80px" : "256px",
+    height: "100vh",
+    background: "#111",
+    zIndex: 99999,
+    transform: mobileOpen
+      ? "translateX(0)"
+      : window.innerWidth >= 768
+      ? "translateX(0)"
+      : "translateX(-100%)",
+    transition: "all .3s",
+  }}
 >
             <div className="flex items-center justify-between p-5 border-b border-zinc-800">
 
