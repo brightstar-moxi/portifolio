@@ -389,6 +389,7 @@ export default function AdminView() {
 
     //
     async function handleSaveData() {
+        // console.log("Form Data:", formData);
         try {
             switch (currentSelectedTab) {
                 case "home":
@@ -453,12 +454,14 @@ export default function AdminView() {
                             website: projectViewFormData.website,
                             technologies: projectViewFormData.technologies,
                             github: projectViewFormData.github,
+                             image: projectViewFormData.image,
                         })
                         : await createProject({
                             name: projectViewFormData.name,
                             website: projectViewFormData.website,
                             technologies: projectViewFormData.technologies,
                             github: projectViewFormData.github,
+                              image: projectViewFormData.image,
                         });
                     break;
             }

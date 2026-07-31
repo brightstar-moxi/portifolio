@@ -34,6 +34,7 @@ export default defineSchema({
     technologies: v.string(),
     website: v.string(),
     github: v.string(),
+     image: v.optional(v.string()),
   }),
 
   contact: defineTable({

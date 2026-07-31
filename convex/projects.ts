@@ -50,6 +50,7 @@ export const create = mutation({
     technologies: v.string(),
     website: v.string(),
     github: v.string(),
+     image: v.string(),
   },
   handler: async (ctx, args) => {
     return await ctx.db.insert("projects", args);
@@ -63,6 +64,7 @@ export const update = mutation({
     technologies: v.string(),
     website: v.string(),
     github: v.string(),
+     image: v.string(),
   },
   handler: async (ctx, args) => {
     const { id, ...data } = args;

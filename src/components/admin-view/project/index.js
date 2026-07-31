@@ -164,7 +164,7 @@ export default function AdminProjectView({
 
         {/* Thumbnail */}
        <img
-  src={item.image || "./placeholder.png"}
+  src={item.image ||"./placeholder.png"}
   alt={item.name}
   className="w-16 h-16 rounded-lg object-cover"
 />
