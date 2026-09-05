@@ -142,7 +142,7 @@ import Link from "next/link";
 
 import { Typewriter } from "react-simple-typewriter";
 import AnimationWrapper from "../animation-wrapper";
-import allImage from "../../../assets/my.png";
+import allImage from "../../../assets/pii.png";
 import { Link as LinkScroll } from "react-scroll";
 import { FiChevronDown } from "react-icons/fi";
 
